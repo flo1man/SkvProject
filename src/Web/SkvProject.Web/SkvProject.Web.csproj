@@ -43,4 +43,8 @@
     <ProjectReference Include="..\SkvProject.Web.Infrastructure\SkvProject.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\SkvProject.Web.ViewModels\SkvProject.Web.ViewModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Posts\" />
+  </ItemGroup>
 </Project>

@@ -18,6 +18,7 @@ namespace SkvProject.Data.Models
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
             this.Posts = new HashSet<Post>();
+            this.Comments = new HashSet<Comment>();
         }
 
         // Audit info
@@ -37,5 +38,7 @@ namespace SkvProject.Data.Models
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
 
         public virtual ICollection<Post> Posts { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }
