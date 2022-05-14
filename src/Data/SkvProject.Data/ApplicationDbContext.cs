@@ -11,6 +11,7 @@
 
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using SkvProject.Data.Models.Forum;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
@@ -25,6 +26,12 @@
         }
 
         public DbSet<Setting> Settings { get; set; }
+
+        public DbSet<Post> Posts { get; set; }
+
+        public DbSet<ForumCategory> ForumCategories { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 
