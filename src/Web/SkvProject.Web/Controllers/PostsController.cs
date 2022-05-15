@@ -1,7 +1,6 @@
 ﻿namespace SkvProject.Web.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
 
     public class PostsController : BaseController
     {
