@@ -2,16 +2,6 @@
 {
     using System.Reflection;
 
-    using SkvProject.Data;
-    using SkvProject.Data.Common;
-    using SkvProject.Data.Common.Repositories;
-    using SkvProject.Data.Models;
-    using SkvProject.Data.Repositories;
-    using SkvProject.Data.Seeding;
-    using SkvProject.Services.Mapping;
-    using SkvProject.Services.Messaging;
-    using SkvProject.Web.ViewModels;
-
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -20,7 +10,16 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using SkvProject.Data;
+    using SkvProject.Data.Common;
+    using SkvProject.Data.Common.Repositories;
+    using SkvProject.Data.Models;
+    using SkvProject.Data.Repositories;
+    using SkvProject.Data.Seeding;
     using SkvProject.Services.Data;
+    using SkvProject.Services.Mapping;
+    using SkvProject.Services.Messaging;
+    using SkvProject.Web.ViewModels;
 
     public class Startup
     {
@@ -62,6 +61,7 @@
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
             services.AddTransient<IPostsService, PostsService>();
+            services.AddTransient<IForumService, ForumService>();
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();

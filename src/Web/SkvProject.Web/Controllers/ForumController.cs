@@ -1,24 +1,29 @@
 ﻿namespace SkvProject.Web.Controllers
 {
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using SkvProject.Data;
-    using SkvProject.Data.Models.Forum;
     using SkvProject.Services.Data;
-    using System.Collections.Generic;
 
     public class ForumController : BaseController
     {
-        private readonly IPostsService postsService;
+        private readonly IForumService forumService;
 
-        public ForumController(IPostsService postsService)
+        public ForumController(IForumService forumService)
         {
-            this.postsService = postsService;
+            this.forumService = forumService;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
-            var viewModel = this.postsService.GetCategories();
+            var viewModel = this.forumService.GetCategories();
+
+            return this.View(viewModel);
+        }
+
+        [HttpGet]
+        public IActionResult ByName(string name)
+        {
+            var viewModel = this.forumService.GetCategoryByName(name);
 
             return this.View(viewModel);
         }

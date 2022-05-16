@@ -3,7 +3,6 @@
     using Microsoft.AspNetCore.Mvc;
     using SkvProject.Services.Data;
     using SkvProject.Web.ViewModels.Posts;
-    using System.Collections.Generic;
 
     public class PostsController : BaseController
     {

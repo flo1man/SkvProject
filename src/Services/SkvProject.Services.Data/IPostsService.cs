@@ -6,8 +6,6 @@
 
     public interface IPostsService
     {
-        IEnumerable<PostCategoryViewModel> GetCategories();
-
         IEnumerable<CategoryViewModel> GetAllCategoriesNames();
     }
 }

@@ -8,21 +8,32 @@
     using SkvProject.Services.Mapping;
     using SkvProject.Web.ViewModels.Posts;
 
-    public class PostsService : IPostsService
+    public class ForumService : IForumService
     {
         private readonly IRepository<PostCategory> postCategoryRepository;
 
-        public PostsService(IRepository<PostCategory> postCategoryRepository)
+        public ForumService(IRepository<PostCategory> postCategoryRepository)
         {
             this.postCategoryRepository = postCategoryRepository;
         }
 
-        public IEnumerable<CategoryViewModel> GetAllCategoriesNames()
+        public IEnumerable<PostCategoryViewModel> GetCategories()
         {
             var viewModel = this.postCategoryRepository
                 .AllAsNoTracking()
-                .To<CategoryViewModel>()
+                .To<PostCategoryViewModel>()
                 .ToList();
+
+            return viewModel;
+        }
+
+        public CategoryViewModel GetCategoryByName(string name)
+        {
+            var viewModel = this.postCategoryRepository
+                .All()
+                .Where(x => x.Name.Replace(" ", "-") == name.Replace(" ", "-"))
+                .To<CategoryViewModel>()
+                .FirstOrDefault();
 
             return viewModel;
         }
