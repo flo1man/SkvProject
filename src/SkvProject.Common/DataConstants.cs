@@ -17,7 +17,7 @@
         public const int CategoryDescriptionMaxLength = 200;
 
         // Comment
-        public const int CommentContentMinLength = 1;
+        public const int CommentContentMinLength = 2;
         public const int CommentContentMaxLength = 3000;
     }
 }

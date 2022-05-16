@@ -1,1 +1,20 @@
-﻿
+﻿@using SkvProject.Web.ViewModels.Posts
+@model IEnumerable<PostCategoryViewModel>
+
+@{
+    this.ViewData["Title"] = "Forum";
+}
+
+
+@foreach (var categories in Model)
+{
+    <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">@categories.Name</h5>
+                <span class="badge bg-primary rounded-pill text-white">@categories.Posts.Count()</span>
+            </div>
+            <p class="mb-1">@categories.Description</p>
+        </a>
+    </div>
+}

@@ -4,12 +4,23 @@
     using Microsoft.AspNetCore.Mvc;
     using SkvProject.Data;
     using SkvProject.Data.Models.Forum;
+    using SkvProject.Services.Data;
+    using System.Collections.Generic;
 
     public class ForumController : BaseController
     {
+        private readonly IPostsService postsService;
+
+        public ForumController(IPostsService postsService)
+        {
+            this.postsService = postsService;
+        }
+
         public IActionResult Index()
         {
-            return this.View();
+            var viewModel = this.postsService.GetCategories();
+
+            return this.View(viewModel);
         }
     }
 }

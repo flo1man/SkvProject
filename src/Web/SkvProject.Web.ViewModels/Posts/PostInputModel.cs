@@ -1,6 +1,7 @@
 ﻿namespace SkvProject.Web.ViewModels.Posts
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using SkvProject.Data.Models.Forum;
@@ -8,8 +9,9 @@
 
     using static SkvProject.Common.DataConstants;
 
-    public class PostInputModel : IMapTo<Post>
+    public class PostInputModel
     {
+
         [Required]
         [MinLength(PostTitleMinLength, ErrorMessage = "The title must have at least {1} characters")]
         [MaxLength(PostTitleMaxLength, ErrorMessage = "You can't use more than {1} characters")]
@@ -20,8 +22,10 @@
         [MaxLength(PostContentMaxLength, ErrorMessage = "You can't use more than {1} characters")]
         public string Content { get; set; }
 
-        [Range(1, int.MaxValue)]
+        [Required]
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
+
+        public IEnumerable<CategoryViewModel> Categories { get; set; }
     }
 }

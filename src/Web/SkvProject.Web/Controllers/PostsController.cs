@@ -1,19 +1,39 @@
 ﻿namespace SkvProject.Web.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
+    using SkvProject.Services.Data;
+    using SkvProject.Web.ViewModels.Posts;
+    using System.Collections.Generic;
 
     public class PostsController : BaseController
     {
+        private readonly IPostsService postsService;
+
+        public PostsController(IPostsService postsService)
+        {
+            this.postsService = postsService;
+        }
+
         [HttpGet]
         public IActionResult Create()
         {
-            return this.View();
+            var viewModel = new PostInputModel
+            {
+                Categories = this.postsService.GetAllCategoriesNames(),
+            };
+
+            return this.View(viewModel);
         }
 
         [HttpPost]
-        public IActionResult Create(string test)
+        public IActionResult Create(PostInputModel inputModel)
         {
-            return this.View();
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+
+            return this.Redirect("/Forum/Index");
         }
     }
 }
