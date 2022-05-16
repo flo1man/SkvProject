@@ -8,7 +8,6 @@
     using SkvProject.Data.Models;
     using SkvProject.Data.Repositories;
     using SkvProject.Data.Seeding;
-    using SkvProject.Services.Data;
     using SkvProject.Services.Mapping;
     using SkvProject.Services.Messaging;
     using SkvProject.Web.ViewModels;
@@ -64,7 +63,6 @@
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
-            services.AddTransient<ISettingsService, SettingsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

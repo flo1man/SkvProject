@@ -33,7 +33,7 @@
         [Required]
         public int CategoryId { get; set; }
 
-        public virtual ForumCategory Category { get; set; }
+        public virtual PostCategory Category { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
     }

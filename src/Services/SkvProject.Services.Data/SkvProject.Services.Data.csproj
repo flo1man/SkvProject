@@ -21,6 +21,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\SkvProject.Data.Common\SkvProject.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\SkvProject.Data.Models\SkvProject.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Data\SkvProject.Data\SkvProject.Data.csproj" />
+    <ProjectReference Include="..\..\Web\SkvProject.Web.ViewModels\SkvProject.Web.ViewModels.csproj" />
     <ProjectReference Include="..\SkvProject.Services.Mapping\SkvProject.Services.Mapping.csproj" />
   </ItemGroup>
 

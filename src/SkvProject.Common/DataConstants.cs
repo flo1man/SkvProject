@@ -14,7 +14,7 @@
         public const int CategoryNameMaxLength = 50;
 
         public const int CategoryDescriptionMinLength = 5;
-        public const int CategoryDescriptionMaxLength = 100;
+        public const int CategoryDescriptionMaxLength = 200;
 
         // Comment
         public const int CommentContentMinLength = 1;

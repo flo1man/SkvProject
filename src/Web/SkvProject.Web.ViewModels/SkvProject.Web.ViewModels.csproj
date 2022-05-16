@@ -23,4 +23,8 @@
     <ProjectReference Include="..\..\Services\SkvProject.Services.Mapping\SkvProject.Services.Mapping.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Forum\" />
+  </ItemGroup>
+
 </Project>

@@ -1,21 +1,22 @@
 ﻿namespace SkvProject.Data.Seeding
 {
+    using SkvProject.Data.Models.Forum;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
     using System.Threading.Tasks;
 
-    using SkvProject.Data.Models;
-
-    internal class SettingsSeeder : ISeeder
+    public class CategoriesSeeder : ISeeder
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
-            if (dbContext.Settings.Any())
+            if (dbContext.PostCategories.Any())
             {
                 return;
             }
 
-            await dbContext.Settings.AddAsync(new Setting { Name = "Setting1", Value = "value1" });
+            //dbContext.PostCategories.AddAsync();
         }
     }
 }

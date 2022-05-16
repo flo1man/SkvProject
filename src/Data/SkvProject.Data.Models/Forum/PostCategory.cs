@@ -2,12 +2,13 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
     using SkvProject.Common;
     using SkvProject.Data.Common.Models;
 
-    public class ForumCategory : BaseDeletableModel<int>
+    public class PostCategory : BaseModel<int>
     {
-        public ForumCategory()
+        public PostCategory()
         {
             this.Posts = new HashSet<Post>();
         }

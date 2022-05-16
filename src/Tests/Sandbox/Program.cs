@@ -11,7 +11,6 @@
     using SkvProject.Data.Models;
     using SkvProject.Data.Repositories;
     using SkvProject.Data.Seeding;
-    using SkvProject.Services.Data;
     using SkvProject.Services.Messaging;
 
     using CommandLine;
@@ -52,8 +51,6 @@
         {
             var sw = Stopwatch.StartNew();
 
-            var settingsService = serviceProvider.GetService<ISettingsService>();
-            Console.WriteLine($"Count of settings: {settingsService.GetCount()}");
 
             Console.WriteLine(sw.Elapsed);
             return await Task.FromResult(0);
@@ -81,7 +78,6 @@
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
-            services.AddTransient<ISettingsService, SettingsService>();
         }
     }
 }

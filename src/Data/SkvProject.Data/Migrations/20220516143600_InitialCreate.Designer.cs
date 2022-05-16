@@ -12,8 +12,8 @@ using SkvProject.Data;
 namespace SkvProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220514172607_AddPrimaryForumModels")]
-    partial class AddPrimaryForumModels
+    [Migration("20220516143600_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -291,43 +291,6 @@ namespace SkvProject.Data.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("SkvProject.Data.Models.Forum.ForumCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.ToTable("ForumCategories");
-                });
-
             modelBuilder.Entity("SkvProject.Data.Models.Forum.Post", b =>
                 {
                     b.Property<string>("Id")
@@ -373,7 +336,7 @@ namespace SkvProject.Data.Migrations
                     b.ToTable("Posts");
                 });
 
-            modelBuilder.Entity("SkvProject.Data.Models.Setting", b =>
+            modelBuilder.Entity("SkvProject.Data.Models.Forum.PostCategory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -384,26 +347,22 @@ namespace SkvProject.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IsDeleted");
-
-                    b.ToTable("Settings");
+                    b.ToTable("PostCategories");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -460,7 +419,7 @@ namespace SkvProject.Data.Migrations
             modelBuilder.Entity("SkvProject.Data.Models.Forum.Comment", b =>
                 {
                     b.HasOne("SkvProject.Data.Models.ApplicationUser", "Author")
-                        .WithMany()
+                        .WithMany("Comments")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -484,7 +443,7 @@ namespace SkvProject.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("SkvProject.Data.Models.Forum.ForumCategory", "Category")
+                    b.HasOne("SkvProject.Data.Models.Forum.PostCategory", "Category")
                         .WithMany("Posts")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -499,6 +458,8 @@ namespace SkvProject.Data.Migrations
                 {
                     b.Navigation("Claims");
 
+                    b.Navigation("Comments");
+
                     b.Navigation("Logins");
 
                     b.Navigation("Posts");
@@ -506,14 +467,14 @@ namespace SkvProject.Data.Migrations
                     b.Navigation("Roles");
                 });
 
-            modelBuilder.Entity("SkvProject.Data.Models.Forum.ForumCategory", b =>
-                {
-                    b.Navigation("Posts");
-                });
-
             modelBuilder.Entity("SkvProject.Data.Models.Forum.Post", b =>
                 {
                     b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("SkvProject.Data.Models.Forum.PostCategory", b =>
+                {
+                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }
