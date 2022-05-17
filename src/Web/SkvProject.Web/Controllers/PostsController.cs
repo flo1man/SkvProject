@@ -32,6 +32,7 @@
                 return this.View();
             }
 
+            // TODO:
             return this.Redirect("/Forum/Index");
         }
     }

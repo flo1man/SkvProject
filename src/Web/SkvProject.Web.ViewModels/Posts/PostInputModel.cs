@@ -1,17 +1,12 @@
 ﻿namespace SkvProject.Web.ViewModels.Posts
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
-    using SkvProject.Data.Models.Forum;
-    using SkvProject.Services.Mapping;
 
     using static SkvProject.Common.DataConstants;
 
     public class PostInputModel
     {
-
         [Required]
         [MinLength(PostTitleMinLength, ErrorMessage = "The title must have at least {1} characters")]
         [MaxLength(PostTitleMaxLength, ErrorMessage = "You can't use more than {1} characters")]

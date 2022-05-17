@@ -2,9 +2,8 @@
 {
     using System.Diagnostics;
 
-    using SkvProject.Web.ViewModels;
-
     using Microsoft.AspNetCore.Mvc;
+    using SkvProject.Web.ViewModels;
 
     public class HomeController : BaseController
     {
