@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-
+    using System.Threading.Tasks;
     using SkvProject.Data.Common.Repositories;
     using SkvProject.Data.Models.Forum;
     using SkvProject.Services.Mapping;
@@ -11,20 +11,37 @@
     public class PostsService : IPostsService
     {
         private readonly IRepository<PostCategory> postCategoryRepository;
+        private readonly IDeletableEntityRepository<Post> postRepository;
 
-        public PostsService(IRepository<PostCategory> postCategoryRepository)
+        public PostsService(IRepository<PostCategory> postCategoryRepository,
+            IDeletableEntityRepository<Post> postRepository)
         {
             this.postCategoryRepository = postCategoryRepository;
+            this.postRepository = postRepository;
         }
 
-        public IEnumerable<CategoryViewModel> GetAllCategoriesNames()
+        public IEnumerable<CategoryNameViewModel> GetAllCategoriesNames()
         {
             var viewModel = this.postCategoryRepository
                 .AllAsNoTracking()
-                .To<CategoryViewModel>()
+                .To<CategoryNameViewModel>()
                 .ToList();
 
             return viewModel;
+        }
+
+        public async Task CreatePostAsync(PostInputModel inputModel, string userId)
+        {
+            var post = new Post
+            {
+                Title = inputModel.Title,
+                Content = inputModel.Content,
+                CategoryId = inputModel.CategoryId,
+                AuthorId = userId,
+            };
+
+            await this.postRepository.AddAsync(post);
+            await this.postRepository.SaveChangesAsync();
         }
     }
 }

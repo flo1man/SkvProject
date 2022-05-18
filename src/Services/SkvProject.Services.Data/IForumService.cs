@@ -6,8 +6,8 @@
 
     public interface IForumService
     {
-        IEnumerable<PostCategoryViewModel> GetCategories();
+        IEnumerable<CategoryViewModel> GetCategories();
 
-        CategoryViewModel GetCategoryByName(string name);
+        CategoryViewModel GetCategoryByName(string category);
     }
 }

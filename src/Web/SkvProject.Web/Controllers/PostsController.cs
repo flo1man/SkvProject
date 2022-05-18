@@ -2,6 +2,7 @@
 {
     using Microsoft.AspNetCore.Mvc;
     using SkvProject.Services.Data;
+    using SkvProject.Web.Infrastructure;
     using SkvProject.Web.ViewModels.Posts;
 
     public class PostsController : BaseController
@@ -29,10 +30,13 @@
         {
             if (!this.ModelState.IsValid)
             {
-                return this.View();
+                inputModel.Categories = this.postsService.GetAllCategoriesNames();
+                return this.View(inputModel);
             }
 
-            // TODO:
+            var userId = this.User.GetId();
+            this.postsService.CreatePostAsync(inputModel, userId);
+
             return this.Redirect("/Forum/Index");
         }
     }

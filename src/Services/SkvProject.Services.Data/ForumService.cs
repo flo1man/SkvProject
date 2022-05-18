@@ -17,21 +17,21 @@
             this.postCategoryRepository = postCategoryRepository;
         }
 
-        public IEnumerable<PostCategoryViewModel> GetCategories()
+        public IEnumerable<CategoryViewModel> GetCategories()
         {
             var viewModel = this.postCategoryRepository
                 .AllAsNoTracking()
-                .To<PostCategoryViewModel>()
+                .To<CategoryViewModel>()
                 .ToList();
 
             return viewModel;
         }
 
-        public CategoryViewModel GetCategoryByName(string name)
+        public CategoryViewModel GetCategoryByName(string category)
         {
             var viewModel = this.postCategoryRepository
                 .All()
-                .Where(x => x.Name.Replace(" ", "-") == name.Replace(" ", "-"))
+                .Where(x => x.Name.Replace(" ", "-") == category.Replace(" ", "-"))
                 .To<CategoryViewModel>()
                 .FirstOrDefault();
 

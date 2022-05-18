@@ -1,0 +1,9 @@
+﻿@using SkvProject.Web.ViewModels.Posts
+@model CategoryViewModel
+
+<h1>About the @Model.Name category</h1>
+<h3>@Model.Description</h3>
+@foreach (var post in Model.Posts)
+{
+    <p>@post.Title -> @post.Content</p>
+}

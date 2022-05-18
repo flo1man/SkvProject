@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Administration\Dashboard\" />
+    <Folder Include="Administration\" />
     <Folder Include="Forum\" />
   </ItemGroup>
 

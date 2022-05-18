@@ -21,9 +21,9 @@
         }
 
         [HttpGet]
-        public IActionResult ByName(string name)
+        public IActionResult ByName(string category)
         {
-            var viewModel = this.forumService.GetCategoryByName(name);
+            var viewModel = this.forumService.GetCategoryByName(category);
 
             return this.View(viewModel);
         }
