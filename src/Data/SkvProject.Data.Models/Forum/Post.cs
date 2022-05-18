@@ -13,6 +13,7 @@
         {
             this.Id = Guid.NewGuid().ToString();
             this.Comments = new HashSet<Comment>();
+            this.FavoritePosts = new HashSet<FavoritePost>();
         }
 
         [Required]
@@ -36,5 +37,7 @@
         public virtual PostCategory Category { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
+
+        public virtual ICollection<FavoritePost> FavoritePosts { get; set; }
     }
 }

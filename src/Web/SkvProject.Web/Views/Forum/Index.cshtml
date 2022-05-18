@@ -5,7 +5,11 @@
     this.ViewData["Title"] = "Forum";
 }
 
-
+<div class="col-xl-10 col-md-10 col-sm-10 col-10 offset-1">
+    <div class="text-center">
+        <a asp-controller="Posts" asp-action="Create" class="btn btn-outline-secondary m-4">Create new post</a>
+    </div>
+</div>
 @foreach (var categories in Model)
 {
     <div class="list-group">
