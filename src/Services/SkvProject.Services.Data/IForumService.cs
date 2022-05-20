@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    using SkvProject.Web.ViewModels.Posts;
+    using SkvProject.Web.ViewModels.Forum;
 
     public interface IForumService
     {

@@ -1,29 +1,31 @@
-﻿@using SkvProject.Web.ViewModels.Posts
+﻿@using SkvProject.Web.ViewModels.Forum
 @model CategoryViewModel
+
 @{
     var count = 1;
+    this.ViewData["Title"] = $"{Model.Name} - Forum";
 }
+
 <h1>About the @Model.Name category</h1>
 <table class="table table-striped table-hover">
     <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col">Title</th>
-            <th scope="col">Content</th>
             <th scope="col">AuthorId</th>
             <th scope="col">CreatedOn</th>
         </tr>
     </thead>
-    @foreach (var post in Model.Posts)
+    @foreach (var post in Model.Posts.OrderByDescending(x => x.CreatedOn))
     {
 
         <tbody>
             <tr>
                 <td>@count</td>
                 <td>@post.Title</td>
-                <td>@post.Content</td>
                 <td>@post.AuthorId</td>
                 <td>@post.CreatedOn.ToString("F")</td>
+                <td><a class="btn btn-info" href="@post.Url">Details</a></td>
             </tr>
         </tbody>
         count++;

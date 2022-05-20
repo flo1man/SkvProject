@@ -42,6 +42,19 @@
             return this.RedirectToAction("Index", "Forum");
         }
 
+        public IActionResult ById(string id)
+        {
+            var viewModel = this.postsService.GetById(id);
+
+            if (viewModel == null)
+            {
+                // TODO:
+                return this.RedirectToAction("Index", "Forum");
+            }
+
+            return this.View(viewModel);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {

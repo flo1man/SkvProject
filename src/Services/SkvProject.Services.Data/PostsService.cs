@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using SkvProject.Data.Common.Repositories;
     using SkvProject.Data.Models.Forum;
     using SkvProject.Services.Mapping;
@@ -13,7 +14,8 @@
         private readonly IRepository<PostCategory> postCategoryRepository;
         private readonly IDeletableEntityRepository<Post> postRepository;
 
-        public PostsService(IRepository<PostCategory> postCategoryRepository,
+        public PostsService(
+            IRepository<PostCategory> postCategoryRepository,
             IDeletableEntityRepository<Post> postRepository)
         {
             this.postCategoryRepository = postCategoryRepository;
@@ -42,6 +44,15 @@
 
             await this.postRepository.AddAsync(post);
             await this.postRepository.SaveChangesAsync();
+        }
+
+        public PostDetailsViewModel GetById(string postId)
+        {
+            return this.postRepository
+                .All()
+                .Where(x => x.Id == postId)
+                .To<PostDetailsViewModel>()
+                .FirstOrDefault();
         }
 
         public async Task DeletePostAsync(string postId)

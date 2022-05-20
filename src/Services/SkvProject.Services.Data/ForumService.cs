@@ -6,7 +6,7 @@
     using SkvProject.Data.Common.Repositories;
     using SkvProject.Data.Models.Forum;
     using SkvProject.Services.Mapping;
-    using SkvProject.Web.ViewModels.Posts;
+    using SkvProject.Web.ViewModels.Forum;
 
     public class ForumService : IForumService
     {

@@ -1,0 +1,19 @@
+﻿@using SkvProject.Web.ViewModels.Posts
+@model PostDetailsViewModel
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">AuthorId</th>
+            <th scope="col">CreatedOn</th>
+        </tr>
+    </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Title</td>
+                <td>@Model.AuthorId</td>
+                <td>@Model.CreatedOn.ToString("F")</td>
+            </tr>
+        </tbody>
+</table>

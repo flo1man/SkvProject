@@ -25,7 +25,6 @@
 
   <ItemGroup>
     <Folder Include="Administration\" />
-    <Folder Include="Forum\" />
   </ItemGroup>
 
 </Project>
