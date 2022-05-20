@@ -39,7 +39,7 @@
             var userId = this.User.GetId();
             await this.postsService.CreatePostAsync(inputModel, userId);
 
-            return this.Redirect("/Forum/Index");
+            return this.RedirectToAction("Index", "Forum");
         }
 
         [HttpPost]

@@ -14,6 +14,7 @@
             this.Id = Guid.NewGuid().ToString();
             this.Comments = new HashSet<Comment>();
             this.FavoritePosts = new HashSet<FavoritePost>();
+            this.Votes = new HashSet<Vote>();
         }
 
         [Required]
@@ -39,5 +40,7 @@
         public virtual ICollection<Comment> Comments { get; set; }
 
         public virtual ICollection<FavoritePost> FavoritePosts { get; set; }
+
+        public virtual ICollection<Vote> Votes { get; set; }
     }
 }

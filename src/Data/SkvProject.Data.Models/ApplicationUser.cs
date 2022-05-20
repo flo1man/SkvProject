@@ -4,9 +4,8 @@ namespace SkvProject.Data.Models
     using System;
     using System.Collections.Generic;
 
-    using SkvProject.Data.Common.Models;
-
     using Microsoft.AspNetCore.Identity;
+    using SkvProject.Data.Common.Models;
     using SkvProject.Data.Models.Forum;
 
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
@@ -20,6 +19,7 @@ namespace SkvProject.Data.Models
             this.Posts = new HashSet<Post>();
             this.Comments = new HashSet<Comment>();
             this.FavoritePosts = new HashSet<FavoritePost>();
+            this.Votes = new HashSet<Vote>();
         }
 
         // Audit info
@@ -43,5 +43,7 @@ namespace SkvProject.Data.Models
         public virtual ICollection<Comment> Comments { get; set; }
 
         public virtual ICollection<FavoritePost> FavoritePosts { get; set; }
+
+        public virtual ICollection<Vote> Votes { get; set; }
     }
 }
