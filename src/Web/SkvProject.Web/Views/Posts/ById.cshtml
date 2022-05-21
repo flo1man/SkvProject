@@ -5,15 +5,16 @@
     <thead>
         <tr>
             <th scope="col">Title</th>
-            <th scope="col">AuthorId</th>
+            <th scope="col">Content</th>
             <th scope="col">CreatedOn</th>
         </tr>
     </thead>
         <tbody>
             <tr>
                 <td>@Model.Title</td>
-                <td>@Model.AuthorId</td>
+                <td>@Model.Content</td>
                 <td>@Model.CreatedOn.ToString("F")</td>
+                <td><a class="btn btn-danger" asp-controller="Posts" asp-action="Delete" asp-route-id="@Model.Id">Delete</a></td>
             </tr>
         </tbody>
 </table>
