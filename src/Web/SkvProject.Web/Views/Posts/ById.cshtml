@@ -1,6 +1,7 @@
-﻿@using SkvProject.Web.ViewModels.Posts
-@model PostDetailsViewModel
-
+﻿@model PostDetailsViewModel
+@{
+    this.ViewData["Title"] = Model.Title;
+}
 <table class="table table-striped table-hover">
     <thead>
         <tr>
@@ -9,12 +10,20 @@
             <th scope="col">CreatedOn</th>
         </tr>
     </thead>
-        <tbody>
-            <tr>
-                <td>@Model.Title</td>
-                <td>@Model.Content</td>
-                <td>@Model.CreatedOn.ToString("F")</td>
-                <td><a class="btn btn-danger" asp-controller="Posts" asp-action="Delete" asp-route-id="@Model.Id">Delete</a></td>
-            </tr>
-        </tbody>
+    <tbody>
+        <tr>
+            <td>@Model.Title</td>
+            <td>@Model.Content</td>
+            <td>@Model.CreatedOn.ToString("F")</td>
+            <td><a class="btn btn-danger" asp-controller="Posts" asp-action="Delete" asp-route-id="@Model.Id">Delete</a></td>
+            <td><a class="btn btn-info" asp-controller="Comments" asp-action="Reply" asp-route-postId="@Model.Id">Reply</a></td>
+
+        </tr>
+    </tbody>
 </table>
+<div class="text-center">
+    @foreach (var comment in Model.Comments)
+{
+    <p>@comment.Content -> @comment.AuthorId</p>
+}
+</div>

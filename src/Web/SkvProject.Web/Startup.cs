@@ -62,6 +62,7 @@
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
             services.AddTransient<IPostsService, PostsService>();
             services.AddTransient<IForumService, ForumService>();
+            services.AddTransient<ICommentsService, CommentsService>();
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();

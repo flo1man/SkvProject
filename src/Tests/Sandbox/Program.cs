@@ -5,6 +5,11 @@
     using System.IO;
     using System.Threading.Tasks;
 
+    using CommandLine;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
     using SkvProject.Data;
     using SkvProject.Data.Common;
     using SkvProject.Data.Common.Repositories;
@@ -12,13 +17,6 @@
     using SkvProject.Data.Repositories;
     using SkvProject.Data.Seeding;
     using SkvProject.Services.Messaging;
-
-    using CommandLine;
-
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
 
     public static class Program
     {
@@ -50,7 +48,6 @@
         private static async Task<int> SandboxCode(SandboxOptions options, IServiceProvider serviceProvider)
         {
             var sw = Stopwatch.StartNew();
-
 
             Console.WriteLine(sw.Elapsed);
             return await Task.FromResult(0);
