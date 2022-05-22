@@ -2,11 +2,13 @@
 {
     using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using SkvProject.Services.Data;
     using SkvProject.Web.Infrastructure;
     using SkvProject.Web.ViewModels.Comments;
 
+    [Authorize]
     public class CommentsController : BaseController
     {
         private readonly ICommentsService commentsService;
