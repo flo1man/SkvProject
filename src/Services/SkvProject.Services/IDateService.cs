@@ -4,6 +4,6 @@ namespace SkvProject.Services
 {
     public interface IDateService
     {
-        string GetTimeFromNow(string postId);
+        string GetCreationFromNow<T>(string postId, T model);
     }
 }

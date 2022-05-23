@@ -5,7 +5,7 @@
 
     using SkvProject.Data.Models.Forum;
     using SkvProject.Services.Mapping;
-    using SkvProject.Web.ViewModels.Forum;
+    using SkvProject.Web.ViewModels.Comments;
 
     public class PostDetailsViewModel : IMapFrom<Post>
     {

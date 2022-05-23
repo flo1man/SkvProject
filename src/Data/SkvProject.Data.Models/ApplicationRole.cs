@@ -3,9 +3,8 @@ namespace SkvProject.Data.Models
 {
     using System;
 
-    using SkvProject.Data.Common.Models;
-
     using Microsoft.AspNetCore.Identity;
+    using SkvProject.Data.Common.Models;
 
     public class ApplicationRole : IdentityRole, IAuditInfo, IDeletableEntity
     {

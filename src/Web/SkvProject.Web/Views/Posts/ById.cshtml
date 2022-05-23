@@ -1,29 +1,113 @@
-﻿@model PostDetailsViewModel
+﻿@using SkvProject.Services
+@using SkvProject.Services.Data
+@inject IForumService forumService
+@inject IPostsService postsService
+@inject IDateService dateService
+@model PostDetailsViewModel
+
 @{
+    var categoriesCount = this.forumService.GetCategoriesCount();
+    var postsCount = this.postsService.GetAllPostsCount();
+    //string timeAgo = null;
     this.ViewData["Title"] = Model.Title;
 }
-<table class="table table-striped table-hover">
+@*<table class="table table-striped table-hover">
     <thead>
-        <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Content</th>
-            <th scope="col">CreatedOn</th>
-        </tr>
+    <tr>
+    <th scope="col">Title</th>
+    <th scope="col">Content</th>
+    <th scope="col">CreatedOn</th>
+    </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>@Model.Title</td>
-            <td>@Model.Content</td>
-            <td>@Model.CreatedOn.ToString("F")</td>
-            <td><a class="btn btn-danger" asp-controller="Posts" asp-action="Delete" asp-route-id="@Model.Id">Delete</a></td>
-            <td><a class="btn btn-info" asp-controller="Comments" asp-action="Reply" asp-route-postId="@Model.Id">Reply</a></td>
+    <tr>
+    <td>@Model.Title</td>
+    <td>@Model.Content</td>
+    <td>@Model.CreatedOn.ToString("F")</td>
+    <td><a class="btn btn-danger" asp-controller="Posts" asp-action="Delete" asp-route-id="@Model.Id">Delete</a></td>
+    <td><a class="btn btn-info" asp-controller="Comments" asp-action="Reply" asp-route-postId="@Model.Id">Reply</a></td>
 
-        </tr>
+    </tr>
     </tbody>
-</table>
-<div class="text-center">
+    </table>
+    <div class="text-center">
     @foreach (var comment in Model.Comments)
-{
+    {
     <p>@comment.Content -> @comment.AuthorId</p>
-}
+    }
+    </div>*@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container mt-5 mb-5">
+    <div class="d-flex justify-content-center row">
+        <div class="d-flex flex-column col-md-8">
+            <div class="d-flex flex-row align-items-center text-left comment-top p-2 bg-white border-bottom px-4">
+                <div class="profile-image"><img class="rounded-circle" src="https://i.imgur.com/t9toMAQ.jpg" width="70"></div>
+                <div class="d-flex flex-column-reverse flex-grow-0 align-items-center votings ml-1"><i class="fa fa-sort-up fa-2x hit-voting"></i><span>127</span><i class="fa fa-sort-down fa-2x hit-voting"></i></div>
+                <div class="d-flex flex-column ml-3">
+                    <div class="d-flex flex-row post-title">
+                        <h5>Is sketch 3.9.1 stable?</h5><span class="ml-2">(Jesshead)</span>
+                    </div>
+                    <div class="d-flex flex-row align-items-center align-content-center post-title"><span class="bdge mr-1">video</span><span class="mr-2 comments">13 comments&nbsp;</span><span class="mr-2 dot"></span><span>@dateService.GetCreationFromNow(Model.Id, Model.Comments)</span></div>
+                </div>
+            </div>
+                <div class="d-flex flex-row add-comment-section mt-4 mb-4"><img class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg" width="38"><input type="text" class="form-control mr-3" placeholder="Add comment"><button class="btn btn-primary" type="button">Comment</button></div>
+            @foreach (var comment in Model.Comments)
+           {
+               <div class="coment-bottom bg-white p-2 px-4">
+                <div class="commented-section mt-2">
+                    <div class="d-flex flex-row align-items-center commented-user">
+                        <h5 class="mr-2">@comment.AuthorId</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">@this.dateService.GetCreationFromNow(comment.Id, comment)</span>
+                    </div>
+                    <div class="comment-text-sm"><span>@comment.Content</span></div>
+                    <div class="reply-section">
+                        <div class="d-flex flex-row align-items-center voting-icons">
+                            <i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">10</span><span class="dot ml-2"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           }
+        </div>
+    </div>
 </div>
+<style>
+    body {
+        background-color: #eee;
+    }
+
+    .bdge {
+        height: 21px;
+        background-color: orange;
+        color: #fff;
+        font-size: 11px;
+        padding: 8px;
+        border-radius: 4px;
+        line-height: 3px;
+    }
+
+    .comments {
+        text-decoration: underline;
+        text-underline-position: under;
+        cursor: pointer;
+    }
+
+    .dot {
+        height: 7px;
+        width: 7px;
+        margin-top: 3px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .hit-voting:hover {
+        color: blue;
+    }
+
+    .hit-voting {
+        cursor: pointer;
+    }
+</style>

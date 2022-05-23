@@ -13,6 +13,8 @@
 
         PostDetailsViewModel GetById(string postId);
 
+        IEnumerable<PostViewModel> GetLatestPost();
+
         int GetAllPostsCount();
 
         Task DeletePostAsync(string postId);

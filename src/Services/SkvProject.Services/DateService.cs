@@ -13,15 +13,27 @@
         private const int MONTH = 30 * DAY;
 
         private readonly IPostsService postsService;
+        private readonly ICommentsService commentsService;
 
-        public DateService(IPostsService postsService)
+        public DateService(IPostsService postsService, ICommentsService commentsService)
         {
             this.postsService = postsService;
+            this.commentsService = commentsService;
         }
 
-        public string GetTimeFromNow(string postId)
+        public string GetCreationFromNow<T>(string id, T model)
         {
-            var postCreated = this.postsService.GetById(postId).CreatedOn;
+            bool isModelComment = false;
+
+            if (typeof(T).Name.Contains("Comment") || typeof(T).Name.Contains("comment"))
+            {
+                isModelComment = true;
+            }
+
+            var postCreated = isModelComment ?
+                this.commentsService.GetById(id).CreatedOn :
+                this.postsService.GetById(id).CreatedOn;
+
             var ts = new TimeSpan(DateTime.UtcNow.Ticks - postCreated.Ticks);
             double delta = Math.Abs(ts.TotalSeconds);
 

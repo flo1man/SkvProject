@@ -7,5 +7,7 @@
     public interface ICommentsService
     {
         Task CreateCommentAsync(CommentInputModel inputModel, string userId, string postId);
+
+        CommentViewModel GetById(string commentId);
     }
 }

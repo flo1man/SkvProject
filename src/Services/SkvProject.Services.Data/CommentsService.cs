@@ -1,13 +1,11 @@
 ﻿namespace SkvProject.Services.Data
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
 
     using SkvProject.Data.Common.Repositories;
     using SkvProject.Data.Models.Forum;
+    using SkvProject.Services.Mapping;
     using SkvProject.Web.ViewModels.Comments;
 
     public class CommentsService : ICommentsService
@@ -30,6 +28,15 @@
 
             await this.commentRepository.AddAsync(comment);
             await this.commentRepository.SaveChangesAsync();
+        }
+
+        public CommentViewModel GetById(string commentId)
+        {
+            return this.commentRepository
+                .All()
+                .Where(x => x.Id == commentId)
+                .To<CommentViewModel>()
+                .FirstOrDefault();
         }
     }
 }

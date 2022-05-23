@@ -2,9 +2,8 @@
 {
     using System.Linq;
 
-    using SkvProject.Data.Common.Models;
-
     using Microsoft.EntityFrameworkCore;
+    using SkvProject.Data.Common.Models;
 
     internal static class EntityIndexesConfiguration
     {

@@ -55,6 +55,11 @@
                 .FirstOrDefault();
         }
 
+        public IEnumerable<PostViewModel> GetLatestPost()
+        {
+            return this.postRepository.All().To<PostViewModel>().OrderByDescending(x => x.CreatedOn).Take(4).ToList();
+        }
+
         public int GetAllPostsCount()
         {
             return this.postRepository.All().Count();

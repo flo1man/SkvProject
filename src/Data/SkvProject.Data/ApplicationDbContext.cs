@@ -6,11 +6,10 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    using SkvProject.Data.Common.Models;
-    using SkvProject.Data.Models;
-
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using SkvProject.Data.Common.Models;
+    using SkvProject.Data.Models;
     using SkvProject.Data.Models.Forum;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
