@@ -27,6 +27,11 @@
             return viewModel;
         }
 
+        public int GetCategoriesCount()
+        {
+            return this.postCategoryRepository.All().Count();
+        }
+
         public CategoryViewModel GetCategoryByName(string category)
         {
             var viewModel = this.postCategoryRepository

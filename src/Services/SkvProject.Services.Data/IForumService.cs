@@ -9,5 +9,7 @@
         IEnumerable<CategoryViewModel> GetCategories();
 
         CategoryViewModel GetCategoryByName(string category);
+
+        int GetCategoriesCount();
     }
 }

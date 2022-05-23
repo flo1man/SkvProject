@@ -55,6 +55,11 @@
                 .FirstOrDefault();
         }
 
+        public int GetAllPostsCount()
+        {
+            return this.postRepository.All().Count();
+        }
+
         public async Task DeletePostAsync(string postId)
         {
             var post = this.postRepository

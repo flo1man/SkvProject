@@ -16,6 +16,7 @@
     using SkvProject.Data.Models;
     using SkvProject.Data.Repositories;
     using SkvProject.Data.Seeding;
+    using SkvProject.Services;
     using SkvProject.Services.Data;
     using SkvProject.Services.Mapping;
     using SkvProject.Services.Messaging;
@@ -63,6 +64,7 @@
             services.AddTransient<IPostsService, PostsService>();
             services.AddTransient<IForumService, ForumService>();
             services.AddTransient<ICommentsService, CommentsService>();
+            services.AddTransient<IDateService, DateService>();
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
