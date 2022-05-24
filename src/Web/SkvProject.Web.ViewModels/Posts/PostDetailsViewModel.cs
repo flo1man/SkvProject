@@ -4,13 +4,14 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using AutoMapper;
     using SkvProject.Data.Models.Forum;
     using SkvProject.Services.Mapping;
     using SkvProject.Web.ViewModels.Comments;
 
     using static SkvProject.Common.DataConstants;
 
-    public class PostDetailsViewModel : IMapFrom<Post>
+    public class PostDetailsViewModel : IHaveCustomMappings
     {
         public string Id { get; set; }
 
@@ -18,7 +19,9 @@
 
         public string Content { get; set; }
 
-        public string AuthorId { get; set; }
+        public string CategoryName { get; set; }
+
+        public string Author { get; set; }
 
         public DateTime CreatedOn { get; set; }
 
@@ -29,5 +32,11 @@
         [MinLength(CommentContentMinLength, ErrorMessage = "The content must have at least {1} characters")]
         [MaxLength(CommentContentMaxLength, ErrorMessage = "You can't use more than {1} characters")]
         public string CommentContent { get; set; }
+
+        public void CreateMappings(IProfileExpression configuration)
+        {
+            configuration.CreateMap<Post, PostDetailsViewModel>()
+                .ForMember(x => x.Author, y => y.MapFrom(s => s.Author.UserName));
+        }
     }
 }
