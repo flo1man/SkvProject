@@ -9,7 +9,7 @@
     using SkvProject.Web.ViewModels.Comments;
 
     [Authorize]
-    public class CommentsController : BaseController
+    public class CommentsController : Controller
     {
         private readonly ICommentsService commentsService;
 
@@ -18,24 +18,18 @@
             this.commentsService = commentsService;
         }
 
-        [HttpGet]
-        public IActionResult Reply()
-        {
-            return this.View();
-        }
-
         [HttpPost]
-        public async Task<IActionResult> Reply(string postId, CommentInputModel inputModel)
+        public async Task<IActionResult> Reply(CommentInputModel inputModel)
         {
             if (!this.ModelState.IsValid)
             {
-                return this.View(inputModel);
+                return this.RedirectToAction("ById", "Posts", new { id = inputModel.PostId });
             }
 
             var userId = this.User.GetId();
-            await this.commentsService.CreateCommentAsync(inputModel, userId, postId);
+            await this.commentsService.CreateCommentAsync(inputModel, userId);
 
-            return this.RedirectToAction("ById", "Posts", new { id = postId });
+            return this.RedirectToAction("ById", "Posts", new { id = inputModel.PostId });
         }
     }
 }

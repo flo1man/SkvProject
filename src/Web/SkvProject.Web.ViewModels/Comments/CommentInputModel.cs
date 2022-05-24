@@ -7,9 +7,9 @@
     public class CommentInputModel
     {
         [Required]
-        [MinLength(CommentContentMinLength, ErrorMessage = "The title must have at least {1} characters")]
+        [MinLength(CommentContentMinLength, ErrorMessage = "The content must have at least {1} characters")]
         [MaxLength(CommentContentMaxLength, ErrorMessage = "You can't use more than {1} characters")]
-        public string Content { get; set; }
+        public string CommentContent { get; set; }
 
         [Required]
         public string PostId { get; set; }

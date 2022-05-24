@@ -17,13 +17,13 @@
             this.commentRepository = commentRepository;
         }
 
-        public async Task CreateCommentAsync(CommentInputModel inputModel, string userId, string postId)
+        public async Task CreateCommentAsync(CommentInputModel inputModel, string userId)
         {
             var comment = new Comment
             {
-                Content = inputModel.Content,
+                Content = inputModel.CommentContent,
                 AuthorId = userId,
-                PostId = postId,
+                PostId = inputModel.PostId,
             };
 
             await this.commentRepository.AddAsync(comment);
