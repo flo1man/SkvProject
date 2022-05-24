@@ -30,6 +30,17 @@
             await this.commentRepository.SaveChangesAsync();
         }
 
+        public async Task DeleteCommentAsync(string commentId)
+        {
+            var post = this.commentRepository
+                .All()
+                .Where(x => x.Id == commentId)
+                .FirstOrDefault();
+
+            this.commentRepository.Delete(post);
+            await this.commentRepository.SaveChangesAsync();
+        }
+
         public CommentViewModel GetById(string commentId)
         {
             return this.commentRepository

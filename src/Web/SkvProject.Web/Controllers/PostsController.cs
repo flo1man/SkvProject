@@ -59,20 +59,18 @@
             return this.View(viewModel);
         }
 
-        [HttpGet]
         [Authorize]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(string id, string categoryName)
         {
             var post = this.postsService.GetById(id);
-
+            var sanitizeCategory = categoryName.Replace(' ', '-');
             if (post == null)
             {
-                // TODO:
-                return this.RedirectToAction("Index", "Forum");
+                return this.Redirect($"/f/{sanitizeCategory}");
             }
 
             await this.postsService.DeletePostAsync(id);
-            return this.RedirectToAction("Index", "Forum");
+            return this.Redirect($"/f/{sanitizeCategory}");
         }
     }
 }

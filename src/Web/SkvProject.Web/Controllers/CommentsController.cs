@@ -31,5 +31,19 @@
 
             return this.RedirectToAction("ById", "Posts", new { id = inputModel.PostId });
         }
+
+        [Authorize]
+        public async Task<IActionResult> Delete(string id, string postId)
+        {
+            var comment = this.commentsService.GetById(id);
+
+            if (comment == null)
+            {
+                return this.Redirect($"/p/{postId}");
+            }
+
+            await this.commentsService.DeleteCommentAsync(id);
+            return this.Redirect($"/p/{postId}");
+        }
     }
 }

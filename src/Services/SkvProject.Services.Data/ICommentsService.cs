@@ -9,5 +9,7 @@
         Task CreateCommentAsync(CommentInputModel inputModel, string userId);
 
         CommentViewModel GetById(string commentId);
+
+        Task DeleteCommentAsync(string commentId);
     }
 }
