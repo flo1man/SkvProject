@@ -9,3 +9,11 @@
 * [Font Awesome](https://fontawesome.com/)
 * Soon....
 <br/><br/>
+
+## :v: Leave a feedback
+Give a :star: if you like it.
+Thank you ❤️
+<br/><br/>
+
+## 📖 License
+See the [LICENSE](https://github.com/GeorgiGradev/MyFitnessApp/blob/main/LICENSE) file for details
