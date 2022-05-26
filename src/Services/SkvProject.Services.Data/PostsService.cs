@@ -32,7 +32,7 @@
             return viewModel;
         }
 
-        public async Task CreatePostAsync(PostInputModel inputModel, string userId)
+        public async Task<string> CreatePostAsync(PostInputModel inputModel, string userId)
         {
             var post = new Post
             {
@@ -44,6 +44,8 @@
 
             await this.postRepository.AddAsync(post);
             await this.postRepository.SaveChangesAsync();
+
+            return post.Id;
         }
 
         public PostDetailsViewModel GetById(string postId)

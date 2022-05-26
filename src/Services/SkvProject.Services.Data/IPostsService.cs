@@ -9,7 +9,7 @@
     {
         IEnumerable<CategoryNameViewModel> GetAllCategoriesNames();
 
-        Task CreatePostAsync(PostInputModel inputModel, string userId);
+        Task<string> CreatePostAsync(PostInputModel inputModel, string userId);
 
         PostDetailsViewModel GetById(string postId);
 

@@ -40,9 +40,9 @@
             }
 
             var userId = this.User.GetId();
-            await this.postsService.CreatePostAsync(inputModel, userId);
+            var postId = await this.postsService.CreatePostAsync(inputModel, userId);
 
-            return this.RedirectToAction("Index", "Forum");
+            return this.Redirect($"/p/{postId}");
         }
 
         [HttpGet]
