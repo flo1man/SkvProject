@@ -22,6 +22,8 @@
 
         public IEnumerable<CommentViewModel> Comments { get; set; }
 
+        public IEnumerable<Vote> Votes { get; set; }
+
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Post, PostViewModel>()

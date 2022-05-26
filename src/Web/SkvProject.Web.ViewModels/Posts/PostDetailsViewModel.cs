@@ -21,11 +21,13 @@
 
         public string CategoryName { get; set; }
 
-        public string Author { get; set; }
+        public string AuthorId { get; set; }
+
+        public string AuthorUsername { get; set; }
 
         public DateTime CreatedOn { get; set; }
 
-        public ICollection<CommentViewModel> Comments { get; set; }
+        public IEnumerable<CommentViewModel> Comments { get; set; }
 
         // Comment content
         [Required]
@@ -36,7 +38,7 @@
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Post, PostDetailsViewModel>()
-                .ForMember(x => x.Author, y => y.MapFrom(s => s.Author.UserName));
+                .ForMember(x => x.AuthorUsername, y => y.MapFrom(s => s.Author.UserName));
         }
     }
 }

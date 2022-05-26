@@ -4,23 +4,6 @@
     this.ViewData["Title"] = "Forum";
 }
 
-@*<div class="col-xl-10 col-md-10 col-sm-10 col-10 offset-1">
-    <div class="text-center">
-        <a asp-controller="Posts" asp-action="Create" class="btn btn-outline-secondary m-4">Create new post</a>
-    </div>
-</div>
-@foreach (var categories in Model)
-{
-    <div class="list-group">
-        <a href="@categories.Url" class="list-group-item list-group-item-action flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">@categories.Name</h5>
-                <span class="badge bg-primary rounded-pill text-white">@categories.Posts.Count()</span>
-            </div>
-            <p class="mb-1">@categories.Description</p>
-        </a>
-    </div>
-}*@
 <html lang="en">
 <head>
     <meta charset="utf-8">
