@@ -16,4 +16,4 @@ Thank you ❤️
 <br/><br/>
 
 ## 📖 License
-See the [LICENSE](https://github.com/GeorgiGradev/MyFitnessApp/blob/main/LICENSE) file for details
+See the [LICENSE](https://github.com/flo1man/SkvProject/blob/main/LICENSE) file for details
