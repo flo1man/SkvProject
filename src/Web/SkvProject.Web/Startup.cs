@@ -65,6 +65,7 @@
             services.AddTransient<IForumService, ForumService>();
             services.AddTransient<ICommentsService, CommentsService>();
             services.AddTransient<IDateService, DateService>();
+            services.AddTransient<IUsersService, UsersService>();
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
