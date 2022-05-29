@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     using AutoMapper;
     using SkvProject.Data.Models.Forum;
@@ -20,14 +21,16 @@
 
         public string Url => $"/p/{this.Id}";
 
+        public int VotesCount { get; set; }
+
         public IEnumerable<CommentViewModel> Comments { get; set; }
 
-        public IEnumerable<Vote> Votes { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Post, PostViewModel>()
-                .ForMember(x => x.Author, y => y.MapFrom(s => s.Author.UserName));
+                .ForMember(x => x.Author, y => y.MapFrom(s => s.Author.UserName))
+                .ForMember(x => x.VotesCount, y => y.MapFrom(s => s.Votes.Sum(v => (int)v.Type)));
         }
     }
 }

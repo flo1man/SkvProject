@@ -16,9 +16,10 @@
             this.voteRepository = voteRepository;
         }
 
-        public int GetVotesCount(int postId)
+        public int GetVotesCount(string postId)
         {
-            return this.voteRepository.All().Where(x => x.Id == postId).Count();
+            return this.voteRepository.All()
+                .Where(x => x.PostId == postId).Sum(x => (int)x.Type);
         }
 
         public async Task VoteAsync(string postId, string userId, bool isUpVote)

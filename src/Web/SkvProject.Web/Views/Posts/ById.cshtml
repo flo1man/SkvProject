@@ -1,5 +1,4 @@
 ﻿@using SkvProject.Services
-@using SkvProject.Services.Data
 @inject IForumService forumService
 @inject IPostsService postsService
 @inject IDateService dateService
@@ -8,7 +7,11 @@
 @{
     var categoriesCount = this.forumService.GetCategoriesCount();
     var postsCount = this.postsService.GetAllPostsCount();
-    var userId = this.User.GetId();
+    string userId = null;
+    if(this.User.Identity.IsAuthenticated)
+    {
+        userId = this.User.GetId();
+    }
     this.ViewData["Title"] = Model.Title + " - " + Model.CategoryName;
 }
 
@@ -25,8 +28,24 @@
                     <div class="comment-text-sm"><span>@Model.Content</span></div>
                     <div class="reply-section">
                     </div>
+                    @{
+                                var postId = $"\"{Model.Id}\"";
+                                <form id="votesForm" method="post">
+                                <div>
+                                    <a href="#" onclick="sendVote(@postId, true)">
+                                        <i class="fa fa-thumbs-up"></i>
+                                    </a>
+                                </div>
+                                <div id="votesCount">@Model.VotesCount</div>
+                                <div>
+                                    <a href="#" onclick="sendVote(@postId, false)">
+                                        <i class="fa fa-thumbs-down"></i>
+                                    </a>
+                                </div>
+                                </form>
+                            }
                     <div class="d-flex flex-row align-items-center align-content-center post-title"><span class="bdge mr-1">@Model.CategoryName</span>&nbsp<span class="mr-2 comments">@Model.Comments.Count() comments&nbsp;</span><span class="mr-2 dot"></span><span>@dateService.GetCreationFromNow(Model.Id, Model.Comments)</span></div>
-                    @if (userId == Model.AuthorId)
+                    @if (userId == Model.AuthorId || User.IsInRole("Administrator"))
                     {
                         <a class="btn btn-danger pull-right" asp-controller="Posts" asp-action="Delete" asp-route-categoryName="@Model.CategoryName" asp-route-id="@Model.Id">Delete</a>
                     }
@@ -55,10 +74,23 @@
                         </div>
                         <div class="comment-text-sm"><span>@comment.Content</span></div>
                         <div class="reply-section">
-                            <div class="d-flex flex-row align-items-center voting-icons">
-                                <i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">10</span><span class="dot ml-2"></span>
-                            </div>
-                            @if (userId == comment.AuthorId)
+                            @{
+                                //var postId = $"\"{Model.Id}\"";
+                                <form id="votesForm" method="post">
+                                <div>
+                                    <a href="#" onclick="sendVote(@postId, true)">
+                                        <i class="fa fa-thumbs-up"></i>
+                                    </a>
+                                </div>
+                                <div id="votesCount">@Model.VotesCount</div>
+                                <div>
+                                    <a href="#" onclick="sendVote(@postId, false)">
+                                        <i class="fa fa-thumbs-down"></i>
+                                    </a>
+                                </div>
+                                </form>
+                            }
+                            @if (userId == comment.AuthorId|| User.IsInRole("Administrator"))
                             {
                                 <a class="btn btn-danger pull-right" asp-controller="Comments" asp-action="Delete" asp-route-postId="@Model.Id" asp-route-id="@comment.Id">Delete</a>
                             }
@@ -108,6 +140,22 @@
     }
 </style>
 @section Scripts{
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
 }
+<script type="text/javascript">
+    function sendVote(postId, isUpVote) {
+            var token = $("#votesForm input[name=__RequestVerificationToken]").val();
+            var json = { postId: postId, isUpVote: isUpVote };
+            $.ajax({
+                url: "api/votes",
+                type: "POST",
+                data: JSON.stringify(json),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                headers: { 'X-CSRF-TOKEN': token },
+                success: function (data) {
+                    $("#votesCount").html(data.votesCount);
+                }
+            });
+        }
+</script>

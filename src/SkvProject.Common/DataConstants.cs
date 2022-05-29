@@ -19,5 +19,9 @@
         // Comment
         public const int CommentContentMinLength = 2;
         public const int CommentContentMaxLength = 3000;
+
+        // User model
+        public const int UsernameMinLength = 3;
+        public const int UsernameMaxLength = 20;
     }
 }

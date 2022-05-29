@@ -6,6 +6,6 @@
     {
         Task VoteAsync(string postId, string userId, bool isUpVote);
 
-        int GetVotesCount(int postId);
+        int GetVotesCount(string postId);
     }
 }
