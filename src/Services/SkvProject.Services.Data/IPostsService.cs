@@ -18,5 +18,7 @@
         int GetAllPostsCount();
 
         Task DeletePostAsync(string postId);
+
+        IEnumerable<PostViewModel> GetPagedPosts(string category, int page, int itemsPerPage = 7);
     }
 }

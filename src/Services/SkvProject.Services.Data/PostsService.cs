@@ -13,13 +13,16 @@
     {
         private readonly IRepository<PostCategory> postCategoryRepository;
         private readonly IDeletableEntityRepository<Post> postRepository;
+        private readonly IForumService forumService;
 
         public PostsService(
             IRepository<PostCategory> postCategoryRepository,
-            IDeletableEntityRepository<Post> postRepository)
+            IDeletableEntityRepository<Post> postRepository,
+            IForumService forumService)
         {
             this.postCategoryRepository = postCategoryRepository;
             this.postRepository = postRepository;
+            this.forumService = forumService;
         }
 
         public IEnumerable<CategoryNameViewModel> GetAllCategoriesNames()
@@ -76,6 +79,24 @@
 
             this.postRepository.Delete(post);
             await this.postRepository.SaveChangesAsync();
+        }
+
+        public IEnumerable<PostViewModel> GetPagedPosts(string category, int page, int itemsPerPage = 7)
+        {
+            var posts = this.forumService.GetCategoryByName(category)?.Posts;
+
+            if (posts == null)
+            {
+                return null;
+            }
+
+            var pagedPosts = posts
+                .OrderByDescending(x => x.CreatedOn)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .ToList();
+
+            return pagedPosts;
         }
     }
 }
