@@ -38,8 +38,8 @@
               </div>
             </div>
           </div>
-          <!-- Start of post 1 -->
-          @foreach (var post in Model.Posts.OrderByDescending(x => x.CreatedOn))
+          <!-- Start of posts -->
+          @foreach (var post in Model.Posts)
          {
            timeAgo = this.dateService.GetCreationFromNow(post.Id, post);
            <div class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0">
@@ -60,7 +60,8 @@
             </div>
           </div>
          }
-          <!-- /End of post 1 -->
+        <partial name="_PagingPartial" model="@Model" />
+          <!-- /End of posts -->
         </div>
         <!-- Sidebar content -->
         <div class="col-lg-3 mb-4 mb-lg-0 px-lg-0 mt-lg-0">

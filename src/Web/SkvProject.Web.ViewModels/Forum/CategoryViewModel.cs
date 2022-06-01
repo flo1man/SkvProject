@@ -6,7 +6,7 @@
     using SkvProject.Services.Mapping;
     using SkvProject.Web.ViewModels.Posts;
 
-    public class CategoryViewModel : IMapFrom<PostCategory>
+    public class CategoryViewModel : PagingViewModel, IMapFrom<PostCategory>
     {
         public string Name { get; set; }
 

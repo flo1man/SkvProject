@@ -113,7 +113,7 @@
                             new { Controller = "Posts", Action = "ById" });
                         endpoints.MapControllerRoute(
                             "forumCategory",
-                            "f/{category:minlength(3)}",
+                            "f/{category:minlength(3)}/{pageNumber?}",
                             new { Controller = "Forum", Action = "ByName" });
                         endpoints.MapControllerRoute(
                             "areaRoute",

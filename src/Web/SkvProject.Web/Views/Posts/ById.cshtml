@@ -24,6 +24,7 @@
                 <div class="commented-section mt-2">
                     <div class="d-flex flex-row align-items-center commented-user">
                         <img class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg" width="70"> <h5 class="mr-2">@Model.AuthorUsername</h5>
+                        <a class="btn btn-info" href="/f/@Model.CategoryName.Replace(' ', '-')">Back</a>
                     </div>
                     <div class="comment-text-sm"><span>@Model.Content</span></div>
                     <div class="reply-section">
@@ -141,7 +142,6 @@
 </style>
 @section Scripts{
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
-}
 <script type="text/javascript">
     function sendVote(postId, isUpVote) {
             var token = $("#votesForm input[name=__RequestVerificationToken]").val();
@@ -159,3 +159,4 @@
             });
         }
 </script>
+}
