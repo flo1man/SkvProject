@@ -1,6 +1,5 @@
 ﻿namespace SkvProject.Web.Areas.Identity.Pages.Account
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;

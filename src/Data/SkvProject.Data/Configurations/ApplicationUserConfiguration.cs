@@ -1,8 +1,8 @@
 ﻿namespace SkvProject.Data.Configurations
 {
-    using SkvProject.Data.Models;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
+    using SkvProject.Data.Models;
 
     public class ApplicationUserConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SkvProject.Services
+﻿namespace SkvProject.Services
 {
     public interface IDateService
     {
