@@ -1,9 +1,11 @@
 ﻿namespace SkvProject.Services.Data
 {
+    using System.Linq;
     using System.Threading.Tasks;
 
     using SkvProject.Data.Common.Repositories;
     using SkvProject.Data.Models.Forum;
+    using SkvProject.Web.ViewModels.FavoritePosts;
 
     public class FavoriteService : IFavoriteService
     {
@@ -14,16 +16,24 @@
             this.favoritePostRepository = favoritePostRepository;
         }
 
-        public async Task AddToFavorite(string postId, string userId)
+        // TODO:
+        public async Task AddToFavorite(FavoritePostsInputModel inputModel)
         {
-            var favoritePost = new FavoritePost
-            {
-                PostId = postId,
-                UserId = userId,
-            };
+            var isFavoriteExist = this.favoritePostRepository
+                .AllAsNoTracking()
+                .Any(x => x.UserId == inputModel.UserId && x.PostId == inputModel.PostId);
 
-            await this.favoritePostRepository.AddAsync(favoritePost);
-            await this.favoritePostRepository.SaveChangesAsync();
+            if (isFavoriteExist == false)
+            {
+                var favoritePost = new FavoritePost
+                {
+                    PostId = inputModel.PostId,
+                    UserId = inputModel.UserId,
+                };
+
+                await this.favoritePostRepository.AddAsync(favoritePost);
+                await this.favoritePostRepository.SaveChangesAsync();
+            }
         }
     }
 }

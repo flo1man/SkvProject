@@ -2,8 +2,10 @@
 {
     using System.Threading.Tasks;
 
+    using SkvProject.Web.ViewModels.FavoritePosts;
+
     public interface IFavoriteService
     {
-        Task AddToFavorite(string postId, string userId);
+        Task AddToFavorite(FavoritePostsInputModel inputModel);
     }
 }
