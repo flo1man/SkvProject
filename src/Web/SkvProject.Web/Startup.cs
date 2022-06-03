@@ -71,6 +71,7 @@
             services.AddTransient<IDateService, DateService>();
             services.AddTransient<IUsersService, UsersService>();
             services.AddTransient<IVotesService, VotesService>();
+            services.AddTransient<IFavoriteService, FavoriteService>();
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
