@@ -11,7 +11,6 @@
 
     [ApiController]
     [Route("api/[controller]")]
-    [IgnoreAntiforgeryToken]
     public class VotesController : ControllerBase
     {
         private readonly IVotesService votesService;

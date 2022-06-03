@@ -52,6 +52,10 @@
                     {
                         options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                     }).AddRazorRuntimeCompilation();
+            services.AddAntiforgery(options =>
+            {
+                options.HeaderName = "X-CSRF-TOKEN";
+            });
             services.AddRazorPages();
             services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -66,6 +70,7 @@
             services.AddTransient<ICommentsService, CommentsService>();
             services.AddTransient<IDateService, DateService>();
             services.AddTransient<IUsersService, UsersService>();
+            services.AddTransient<IVotesService, VotesService>();
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
