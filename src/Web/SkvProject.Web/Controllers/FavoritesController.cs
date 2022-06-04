@@ -22,6 +22,11 @@
         [HttpPost]
         public async Task<IActionResult> AddToFavorite(FavoritePostsInputModel inputModel)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return this.Redirect($"/p/{inputModel.PostId}");
+            }
+
             await this.favoriteService.AddToFavorite(inputModel);
 
             return this.Redirect($"/p/{inputModel.PostId}");

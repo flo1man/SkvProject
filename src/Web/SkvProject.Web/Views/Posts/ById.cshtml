@@ -8,7 +8,8 @@
     var categoriesCount = this.forumService.GetCategoriesCount();
     var postsCount = this.postsService.GetAllPostsCount();
     string userId = null;
-    if(this.User.Identity.IsAuthenticated)
+    var postId = $"\"{Model.Id}\"";
+    if (this.User.Identity.IsAuthenticated)
     {
         userId = this.User.GetId();
     }
@@ -17,6 +18,7 @@
 
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="~/css/post.css" rel="stylesheet"/>
 <div class="container mt-5 mb-5">
     <div class="d-flex justify-content-center row">
         <div class="d-flex flex-column col-md-10">
@@ -24,26 +26,27 @@
                 <div class="commented-section mt-2">
                     <div class="d-flex flex-row align-items-center commented-user">
                         <img class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg" width="70"> <h5 class="mr-2">@Model.AuthorUsername</h5>
-                        <a class="btn btn-info" href="/f/@Model.CategoryName.Replace(' ', '-')">Back</a>
+                        <a class="btn btn-info offset-sm-1" href="/f/@Model.CategoryName.Replace(' ', '-')">Back</a>
+                        <form id="favoriteForm" method="post"></form>
+                        <a class="offset-md-3" href="#" onclick="addFavorite('@Model.Id', '@userId')">
+                            <i class="fa fa-heart" id="heart"></i>
+                        </a>
                     </div>
                     <div class="comment-text-sm"><span>@Model.Content</span></div>
                     <div class="reply-section">
                     </div>
-                    @{
-                                var postId = $"\"{Model.Id}\"";
-                                <form id="votesForm" method="post"></form>
-                                <div>
-                                    <a href="#" onclick="sendVote(@postId, true)">
-                                        <i class="fa fa-thumbs-up"></i>
-                                    </a>
-                                </div>
-                                <div id="votesCount">@Model.VotesCount</div>
-                                <div>
-                                    <a href="#" onclick="sendVote(@postId, false)">
-                                        <i class="fa fa-thumbs-down"></i>
-                                    </a>
-                                </div>
-                            }
+                    <form id="votesForm" method="post"></form>
+                    <div>
+                        <a href="#" onclick="sendVote(@postId, true)">
+                            <i class="fa fa-thumbs-up"></i>
+                        </a>
+                    </div>
+                    <div id="votesCount">@Model.VotesCount</div>
+                    <div>
+                        <a href="#" onclick="sendVote(@postId, false)">
+                            <i class="fa fa-thumbs-down"></i>
+                        </a>
+                    </div>
                     <div class="d-flex flex-row align-items-center align-content-center post-title"><span class="bdge mr-1">@Model.CategoryName</span>&nbsp<span class="mr-2 comments">@Model.Comments.Count() comments&nbsp;</span><span class="mr-2 dot"></span><span>@dateService.GetCreationFromNow(Model.Id, Model.Comments)</span></div>
                     @if (userId == Model.AuthorId || User.IsInRole("Administrator"))
                     {
@@ -73,89 +76,17 @@
                             <h5 class="mr-2">@comment.AuthorUsername</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">@this.dateService.GetCreationFromNow(comment.Id, comment)</span>
                         </div>
                         <div class="comment-text-sm"><span>@comment.Content</span></div>
-                        <div class="reply-section">
-                            @{
-                                ////var postId = $"\"{Model.Id}\"";
-                                //<form id="votesForm" method="post">
-                                //<div>
-                                //    <a href="#" onclick="sendVote(@postId, true)">
-                                //        <i class="fa fa-thumbs-up"></i>
-                                //    </a>
-                                //</div>
-                                //<span id="votesCount">@Model.VotesCount</span>
-                                //<div>
-                                //    <a href="#" onclick="sendVote(@postId, false)">
-                                //        <i class="fa fa-thumbs-down"></i>
-                                //    </a>
-                                //</div>
-                                //</form>
-                            }
-                            @if (userId == comment.AuthorId|| User.IsInRole("Administrator"))
-                            {
-                                <a class="btn btn-danger pull-right" asp-controller="Comments" asp-action="Delete" asp-route-postId="@Model.Id" asp-route-id="@comment.Id">Delete</a>
-                            }
-                        </div>
+                        @if (userId == comment.AuthorId || User.IsInRole("Administrator"))
+                        {
+                            <a class="btn btn-danger pull-right" asp-controller="Comments" asp-action="Delete" asp-route-postId="@Model.Id" asp-route-id="@comment.Id">Delete</a>
+                        }
                     </div>
                 </div>
             }
         </div>
     </div>
 </div>
-<style>
-    body {
-        background-color: #eee;
-    }
-
-    .bdge {
-        height: 21px;
-        background-color: orange;
-        color: #fff;
-        font-size: 11px;
-        padding: 8px;
-        border-radius: 4px;
-        line-height: 3px;
-    }
-
-    .comments {
-        text-decoration: underline;
-        text-underline-position: under;
-        cursor: pointer;
-    }
-
-    .dot {
-        height: 7px;
-        width: 7px;
-        margin-top: 3px;
-        background-color: #bbb;
-        border-radius: 50%;
-        display: inline-block;
-    }
-
-    .hit-voting:hover {
-        color: blue;
-    }
-
-    .hit-voting {
-        cursor: pointer;
-    }
-</style>
 @section Scripts{
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript">
-    function sendVote(postId, isUpVote) {
-            var token = $("#votesForm input[name=__RequestVerificationToken]").val();
-            var json = { postId: postId, isUpVote: isUpVote };
-            $.ajax({
-                type: "POST",
-                url: "/api/votes",
-                data: JSON.stringify(json),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                headers: { 'X-CSRF-TOKEN': token },
-                success: function (data) {
-                    $("#votesCount").html(data.votesCount);
-                }
-            });
-        }
-</script>
+<script src="~/js/post.js"></script>
 }
