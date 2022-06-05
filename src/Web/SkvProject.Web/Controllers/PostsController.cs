@@ -60,6 +60,7 @@
         }
 
         [Authorize]
+        [HttpPost]
         public async Task<IActionResult> Delete(string id, string categoryName)
         {
             var post = this.postsService.GetById(id);
