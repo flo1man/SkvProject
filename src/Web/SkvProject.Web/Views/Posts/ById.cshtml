@@ -32,7 +32,7 @@
                             <i class="fa fa-heart" id="heart"></i>
                         </a>
                     </div>
-                    <div class="comment-text-sm"><span>@Model.Content</span></div>
+                    <div class="comment-text-sm"><span>@Html.Raw(Model.Content)</span></div>
                     <div class="reply-section">
                     </div>
                     <form id="votesForm" method="post"></form>

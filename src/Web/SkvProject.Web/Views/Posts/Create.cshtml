@@ -4,6 +4,17 @@
     this.ViewData["Title"] = "Add new post";
 }
 
+<script src="https://cdn.tiny.cloud/1/eoor82oy7fg7mxj06yl1x01amswfrmbnn1ksgi2upjh1m5pk/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
+      toolbar: 'casechange checklist code export image editimage pageembed permanentpen table tableofcontents',
+      toolbar_mode: 'floating',
+      tinycomments_mode: 'embedded',
+    });
+  </script>
+
 <form method="post">
     <div class="form-group">
         <label asp-for="Title"></label>

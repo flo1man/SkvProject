@@ -6,6 +6,7 @@
     using System.Linq;
 
     using AutoMapper;
+    using Ganss.XSS;
     using SkvProject.Data.Models.Forum;
     using SkvProject.Services.Mapping;
     using SkvProject.Web.ViewModels.Comments;
@@ -19,6 +20,8 @@
         public string Title { get; set; }
 
         public string Content { get; set; }
+
+        public string SanitizedContent => new HtmlSanitizer().Sanitize(this.Content);
 
         public string CategoryName { get; set; }
 
