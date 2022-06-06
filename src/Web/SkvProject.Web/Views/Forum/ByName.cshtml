@@ -18,8 +18,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
@@ -32,7 +30,7 @@
               <div class="dropdown bootstrap-select form-control form-control-lg bg-white bg-op-9 ml-auto text-sm w-lg-50" style="width: 100%;">
                   <select class="form-control form-control-lg bg-white bg-op-9 ml-auto text-sm w-lg-50" data-toggle="select" tabindex="-98">
                     <option action> Filter by </option>
-                    <option> Votes </option>
+                    <option href="#" onclick="orderByVote('@Model.Name')"> Votes </option>
                     <option> Replys </option>
                   </select>
               </div>
@@ -124,6 +122,19 @@ a{
     font-weight: 700 !important;
 }
 </style>
-<script type="text/javascript"></script>
+
 </body>
 </html>
+@section Scripts{
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    @*<script type="text/javascript">
+        function orderByVote(categoryName) {
+            $.ajax({
+                type: "GET",
+                url: "/Sort/ByVotes",
+                data: categoryName,
+            });
+        }
+    </script>*@
+}

@@ -25,13 +25,14 @@
             <div class="coment-bottom bg-white p-2 px-4">
                 <div class="commented-section mt-2">
                     <div class="d-flex flex-row align-items-center commented-user">
-                        <img class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg" width="70"> <h5 class="mr-2">@Model.AuthorUsername</h5>
+                        <img class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg" width="75"> <h5 class="mr-2">@Model.AuthorUsername</h5>
                         <a class="btn btn-info offset-sm-1" href="/f/@Model.CategoryName.Replace(' ', '-')">Back</a>
                         <form id="favoriteForm" method="post"></form>
-                        <a class="offset-md-3" href="#" onclick="addFavorite('@Model.Id', '@userId')">
+                        <a class="offset-md-3" href="#" onclick="addFavorite(@postId, '@userId')">
                             <i class="fa fa-heart" id="heart"></i>
                         </a>
                     </div>
+                    <br />
                     <div class="comment-text-sm"><span>@Html.Raw(Model.Content)</span></div>
                     <div class="reply-section">
                     </div>
@@ -48,7 +49,7 @@
                         </a>
                     </div>
                     <div class="d-flex flex-row align-items-center align-content-center post-title"><span class="bdge mr-1">@Model.CategoryName</span>&nbsp<span class="mr-2 comments">@Model.Comments.Count() comments&nbsp;</span><span class="mr-2 dot"></span><span>@dateService.GetCreationFromNow(Model.Id, Model.Comments)</span></div>
-                    @if (userId == Model.AuthorId || User.IsInRole("Administrator"))
+                    @if (userId == Model.AuthorId || User.IsInRole(GlobalConstants.AdministratorRoleName))
                     {
                         <form method="post" asp-controller="Posts" asp-action="Delete" asp-route-categoryName="@Model.CategoryName" asp-route-id="@Model.Id" id="deleteForm"></form>
                         <button class="btn btn-danger pull-right" data-toggle="modal" data-target="#deleteModal">Delete</button>
@@ -77,7 +78,7 @@
                             <h5 class="mr-2">@comment.AuthorUsername</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">@this.dateService.GetCreationFromNow(comment.Id, comment)</span>
                         </div>
                         <div class="comment-text-sm"><span>@comment.Content</span></div>
-                        @if (userId == comment.AuthorId || User.IsInRole("Administrator"))
+                        @if (userId == comment.AuthorId || User.IsInRole(GlobalConstants.AdministratorRoleName))
                         {
                             <a class="btn btn-danger pull-right" asp-controller="Comments" asp-action="Delete" asp-route-postId="@Model.Id" asp-route-id="@comment.Id">Delete</a>
                         }
