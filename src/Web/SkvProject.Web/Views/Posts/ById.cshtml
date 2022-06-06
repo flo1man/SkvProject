@@ -80,7 +80,8 @@
                         <div class="comment-text-sm"><span>@comment.Content</span></div>
                         @if (userId == comment.AuthorId || User.IsInRole(GlobalConstants.AdministratorRoleName))
                         {
-                            <a class="btn btn-danger pull-right" asp-controller="Comments" asp-action="Delete" asp-route-postId="@Model.Id" asp-route-id="@comment.Id">Delete</a>
+                           <form method="post" asp-controller="Comments" asp-action="Delete" asp-route-postId="@Model.Id" asp-route-id="@comment.Id" id="deleteComment"></form>
+                           <button class="btn btn-danger pull-right" data-toggle="modal" data-target="#deleteCommentModal">Delete</button>
                         }
                     </div>
                 </div>
@@ -96,6 +97,19 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" onclick="deleteForm.submit()">Yes</button>
+                <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="deleteCommentModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Are you sure you want to remove the comment?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="deleteComment.submit()">Yes</button>
                 <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
             </div>
         </div>

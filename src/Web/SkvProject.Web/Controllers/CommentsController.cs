@@ -33,6 +33,7 @@
         }
 
         [Authorize]
+        [HttpPost]
         public async Task<IActionResult> Delete(string id, string postId)
         {
             var comment = this.commentsService.GetById(id);
