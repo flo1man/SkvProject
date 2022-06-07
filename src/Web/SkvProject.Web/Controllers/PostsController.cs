@@ -46,9 +46,33 @@
         }
 
         [HttpGet]
+        [Authorize]
+        public IActionResult Edit(string postId)
+        {
+            var viewModel = this.postsService.GetById<PostEditInputModel>(postId);
+            viewModel.Categories = this.postsService.GetAllCategoriesNames();
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Edit(PostEditInputModel inputModel)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                inputModel.Categories = this.postsService.GetAllCategoriesNames();
+                return this.View(inputModel);
+            }
+
+            var postId = await this.postsService.UpdateAsync(inputModel);
+
+            return this.Redirect($"/p/{postId}");
+        }
+
+        [HttpGet]
         public IActionResult ById(string id)
         {
-            var viewModel = this.postsService.GetById(id);
+            var viewModel = this.postsService.GetById<PostDetailsViewModel>(id);
 
             if (viewModel == null)
             {
@@ -63,7 +87,7 @@
         [HttpPost]
         public async Task<IActionResult> Delete(string id, string categoryName)
         {
-            var post = this.postsService.GetById(id);
+            var post = this.postsService.GetById<PostDetailsViewModel>(id);
             var sanitizeCategory = categoryName.Replace(' ', '-');
             if (post == null)
             {

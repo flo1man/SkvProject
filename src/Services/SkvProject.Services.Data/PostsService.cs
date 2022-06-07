@@ -51,12 +51,25 @@
             return post.Id;
         }
 
-        public PostDetailsViewModel GetById(string postId)
+        public async Task<string> UpdateAsync(PostEditInputModel inputModel)
+        {
+            var post = this.postRepository.All().FirstOrDefault(x => x.Id == inputModel.Id);
+
+            post.Title = inputModel.Title;
+            post.Content = inputModel.Content;
+            post.CategoryId = inputModel.CategoryId;
+
+            await this.postRepository.SaveChangesAsync();
+
+            return post.Id;
+        }
+
+        public T GetById<T>(string postId)
         {
             return this.postRepository
                 .All()
                 .Where(x => x.Id == postId)
-                .To<PostDetailsViewModel>()
+                .To<T>()
                 .FirstOrDefault();
         }
 

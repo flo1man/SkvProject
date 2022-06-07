@@ -1,0 +1,40 @@
+﻿@model PostEditInputModel
+
+@{
+    this.ViewData["Title"] = $"Edit {Model.Title}";
+}
+
+<script src="https://cdn.tiny.cloud/1/eoor82oy7fg7mxj06yl1x01amswfrmbnn1ksgi2upjh1m5pk/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'image autolink lists media table',
+      toolbar: 'casechange checklist code export image editimage pageembed permanentpen table tableofcontents',
+      toolbar_mode: 'floating',
+      tinycomments_mode: 'embedded',
+    });
+  </script>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" placeholder="Title here..." />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Content"></label>
+        <textarea asp-for="Content" class="form-control" rows=8 placeholder="Content here..."></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CategoryId"></label>
+        <select asp-for="CategoryId" class="form-control">
+            @foreach (var category in Model.Categories)
+            {
+                <option value="@category.Id">@category.Name</option>
+            }
+        </select>
+    </div>
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" class="btn btn-primary" />
+</form>
