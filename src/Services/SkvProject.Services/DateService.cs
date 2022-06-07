@@ -2,7 +2,7 @@
 {
     using System;
 
-    using SkvProject.Services.Data;
+    using SkvProject.Services.Data.Forum;
     using SkvProject.Web.ViewModels.Posts;
 
     public class DateService : IDateService

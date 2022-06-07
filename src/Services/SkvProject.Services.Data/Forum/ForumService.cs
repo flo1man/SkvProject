@@ -1,4 +1,4 @@
-﻿namespace SkvProject.Services.Data
+﻿namespace SkvProject.Services.Data.Forum
 {
     using System.Collections.Generic;
     using System.Linq;

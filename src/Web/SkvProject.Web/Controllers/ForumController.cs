@@ -3,7 +3,7 @@
     using System.Linq;
 
     using Microsoft.AspNetCore.Mvc;
-    using SkvProject.Services.Data;
+    using SkvProject.Services.Data.Forum;
     using SkvProject.Web.ViewModels.Forum;
 
     public class ForumController : BaseController

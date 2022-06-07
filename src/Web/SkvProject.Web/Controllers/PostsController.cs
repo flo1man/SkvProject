@@ -4,7 +4,7 @@
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using SkvProject.Services.Data;
+    using SkvProject.Services.Data.Forum;
     using SkvProject.Web.Infrastructure;
     using SkvProject.Web.ViewModels.Posts;
 

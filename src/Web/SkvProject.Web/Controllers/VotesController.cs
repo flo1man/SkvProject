@@ -6,7 +6,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using SkvProject.Data.Models;
-    using SkvProject.Services.Data;
+    using SkvProject.Services.Data.Forum;
     using SkvProject.Web.ViewModels.Votes;
 
     [ApiController]

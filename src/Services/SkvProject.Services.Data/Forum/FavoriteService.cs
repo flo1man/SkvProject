@@ -1,4 +1,4 @@
-﻿namespace SkvProject.Services.Data
+﻿namespace SkvProject.Services.Data.Forum
 {
     using System.Linq;
     using System.Threading.Tasks;
