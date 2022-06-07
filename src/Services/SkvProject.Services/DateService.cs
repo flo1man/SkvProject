@@ -3,6 +3,7 @@
     using System;
 
     using SkvProject.Services.Data;
+    using SkvProject.Web.ViewModels.Posts;
 
     public class DateService : IDateService
     {
@@ -32,7 +33,7 @@
 
             var postCreated = isModelComment ?
                 this.commentsService.GetById(id).CreatedOn :
-                this.postsService.GetById(id).CreatedOn;
+                this.postsService.GetById<PostViewModel>(id).CreatedOn;
 
             var ts = new TimeSpan(DateTime.UtcNow.Ticks - postCreated.Ticks);
             double delta = Math.Abs(ts.TotalSeconds);

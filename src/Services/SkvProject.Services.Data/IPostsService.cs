@@ -11,7 +11,9 @@
 
         Task<string> CreatePostAsync(PostInputModel inputModel, string userId);
 
-        PostDetailsViewModel GetById(string postId);
+        Task<string> UpdateAsync(PostEditInputModel inputModel);
+
+        T GetById<T>(string postId);
 
         IEnumerable<PostViewModel> GetLatestPost();
 

@@ -87,6 +87,7 @@
                 </div>
             }
         </div>
+        <a asp-action="Edit" asp-route-postId="@Model.Id" class="pull-right" style="color: black; font-size: 25px;"><i class="fa-solid fa-pen-to-square" ></i></a>
     </div>
 </div>
 <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
@@ -118,4 +119,5 @@
 @section Scripts{
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/js/post.js"></script>
+<script src="https://kit.fontawesome.com/4bf68dbe1b.js" crossorigin="anonymous"></script>
 }
