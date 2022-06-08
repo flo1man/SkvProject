@@ -8,7 +8,7 @@
     <script>
     tinymce.init({
       selector: 'textarea',
-      plugins: 'image autolink lists media table',
+      plugins: 'image autolink lists media table autoresize',
       toolbar: 'casechange checklist code export image editimage pageembed permanentpen table tableofcontents',
       toolbar_mode: 'floating',
       tinycomments_mode: 'embedded',
@@ -23,7 +23,7 @@
     </div>
     <div class="form-group">
         <label asp-for="Content"></label>
-        <textarea asp-for="Content" class="form-control" rows=8 placeholder="Content here..."></textarea>
+        <textarea asp-for="Content" class="form-control" rows=10 placeholder="Content here..."></textarea>
         <span asp-validation-for="Content" class="text-danger"></span>
     </div>
     <div class="form-group">

@@ -7,7 +7,7 @@
         public const int PostTitleMaxLength = 100;
 
         public const int PostContentMinLength = 20;
-        public const int PostContentMaxLength = 6000;
+        public const int PostContentMaxLength = 12000;
 
         // Forum Category
         public const int CategoryNameMinLength = 5;
@@ -18,7 +18,7 @@
 
         // Comment
         public const int CommentContentMinLength = 2;
-        public const int CommentContentMaxLength = 3000;
+        public const int CommentContentMaxLength = 6000;
 
         // User model
         public const int UsernameMinLength = 3;
