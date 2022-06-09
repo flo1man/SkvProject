@@ -17,7 +17,7 @@
     using SkvProject.Data.Repositories;
     using SkvProject.Data.Seeding;
     using SkvProject.Services;
-    using SkvProject.Services.Data;
+    using SkvProject.Services.Data.Forum;
     using SkvProject.Services.Mapping;
     using SkvProject.Services.Messaging;
     using SkvProject.Web.ViewModels;
@@ -74,7 +74,9 @@
             services.AddTransient<IFavoriteService, FavoriteService>();
 
             // Application services
-            services.AddTransient<IEmailSender, NullMessageSender>();
+            services.AddTransient<IEmailSender>(x => new SendGridEmailSender(this.configuration["SendGrid:ApiKey"]));
+
+            // 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
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
