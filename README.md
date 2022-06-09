@@ -7,7 +7,8 @@
 * [AutoMapper](https://github.com/AutoMapper/AutoMapper)
 * [Bootstrap](https://github.com/twbs/bootstrap)
 * [Font Awesome](https://fontawesome.com/)
-* Soon....
+* TinyMCE
+* HTMLSanitizer
 <br/><br/>
 
 ## 📝 Project Overview
