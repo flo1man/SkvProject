@@ -1,0 +1,44 @@
+﻿@model SkvProject.Web.ViewModels.Contacts.ContactFormViewModel
+
+<link href="~/css/contact.css" rel="stylesheet">
+<div class="container d-flex justify-content-center">
+    <div class="row my-2 mx-2">
+        <div class="col-md-6">
+            <img class="img-fluid" src="~/images/contact.jpg" alt="contact">
+        </div>
+        <div class="col-md-6">
+            <h2 class="form-title">Contact us</h2>
+            <p class="justify text-muted">Have an enquiry or would like to give us feedback?<br>Fill out the form below to contact our team.</p>
+            <form method="post">
+                <div class="form-group pt-2 pl-1">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group pl-1">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" value="@this.User.Identity.Name" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group pt-2 pl-1">
+                    <label asp-for="Title"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="form-group pl-1">
+                    <label asp-for="Content"></label>
+                    <textarea asp-for="Content" class="form-control" rows="6"></textarea>
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 offset-md-9">
+                        <button id="btn" type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
