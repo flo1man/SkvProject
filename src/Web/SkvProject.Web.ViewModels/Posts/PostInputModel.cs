@@ -3,6 +3,8 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using SkvProject.Web.ViewModels.Categories;
+
     using static SkvProject.Common.DataConstants;
 
     public class PostInputModel

@@ -4,7 +4,7 @@
 
     using Microsoft.AspNetCore.Mvc;
     using SkvProject.Services.Data.Forum;
-    using SkvProject.Web.ViewModels.Forum;
+    using SkvProject.Web.ViewModels.Categories;
 
     public class ForumController : BaseController
     {

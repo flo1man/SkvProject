@@ -1,4 +1,4 @@
-﻿namespace SkvProject.Web.ViewModels.Forum
+﻿namespace SkvProject.Web.ViewModels.Categories
 {
     using System.Collections.Generic;
 

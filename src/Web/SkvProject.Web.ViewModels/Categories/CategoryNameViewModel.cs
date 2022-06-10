@@ -1,4 +1,4 @@
-﻿namespace SkvProject.Web.ViewModels.Posts
+﻿namespace SkvProject.Web.ViewModels.Categories
 {
     using SkvProject.Data.Models.Forum;
     using SkvProject.Services.Mapping;

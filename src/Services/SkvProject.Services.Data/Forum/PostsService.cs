@@ -7,6 +7,7 @@
     using SkvProject.Data.Common.Repositories;
     using SkvProject.Data.Models.Forum;
     using SkvProject.Services.Mapping;
+    using SkvProject.Web.ViewModels.Categories;
     using SkvProject.Web.ViewModels.Posts;
 
     public class PostsService : IPostsService
