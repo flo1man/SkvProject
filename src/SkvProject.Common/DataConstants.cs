@@ -23,5 +23,15 @@
         // User model
         public const int UsernameMinLength = 3;
         public const int UsernameMaxLength = 20;
+
+        // Contacts
+        public const int ContactNameMinLength = 3;
+        public const int ContactNameMaxLength = 50;
+
+        public const int ContactTitleMinLength = 5;
+        public const int ContactTitleMaxLength = 100;
+
+        public const int ContactContentMinLength = 20;
+        public const int ContactContentMaxLength = 3000;
     }
 }
