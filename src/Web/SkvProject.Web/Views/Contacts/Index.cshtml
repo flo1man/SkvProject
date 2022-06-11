@@ -1,4 +1,5 @@
-﻿@model SkvProject.Web.ViewModels.Contacts.ContactFormViewModel
+﻿@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+@model SkvProject.Web.ViewModels.Contacts.ContactFormViewModel
 
 <link href="~/css/contact.css" rel="stylesheet">
 <div class="container d-flex justify-content-center">
@@ -35,6 +36,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-3 offset-md-9">
+                        @*<input type="hidden" id="RecaptchaValue" name="RecaptchaValue" />*@
                         <button id="btn" type="submit" class="btn btn-primary">Send</button>
                     </div>
                 </div>
@@ -42,3 +44,15 @@
         </div>
     </div>
 </div>
+
+@*@section Scripts
+{
+    <script src="https://www.google.com/recaptcha/api.js?render=@this.Configuration["GoogleReCaptcha:Key"]"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@this.Configuration["GoogleReCaptcha:Key"]', { action: 'contact_form' }).then(function (token) {
+                document.getElementById("RecaptchaValue").value = token;
+            });
+        });
+    </script>
+}*@

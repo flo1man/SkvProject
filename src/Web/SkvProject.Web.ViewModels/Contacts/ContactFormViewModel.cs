@@ -1,11 +1,8 @@
 ﻿namespace SkvProject.Web.ViewModels.Contacts
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+
+    using SkvProject.Web.Infrastructure;
 
     using static SkvProject.Common.DataConstants;
 
@@ -35,6 +32,6 @@
         public string Content { get; set; }
 
         //[GoogleReCaptchaValidation]
-        public string RecaptchaValue { get; set; }
+        //public string RecaptchaValue { get; set; }
     }
 }

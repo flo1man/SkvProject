@@ -65,6 +65,10 @@
             services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
+
+            // Application services
+            services.AddTransient<IEmailSender>(
+                x => new SendGridEmailSender(this.configuration["SendGrid:ApiKey"]));
             services.AddTransient<IPostsService, PostsService>();
             services.AddTransient<IForumService, ForumService>();
             services.AddTransient<ICommentsService, CommentsService>();
@@ -72,9 +76,6 @@
             services.AddTransient<IUsersService, UsersService>();
             services.AddTransient<IVotesService, VotesService>();
             services.AddTransient<IFavoriteService, FavoriteService>();
-
-            // Application services
-            services.AddTransient<IEmailSender>(x => new SendGridEmailSender(this.configuration["SendGrid:ApiKey"]));
 
             // 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
         }
