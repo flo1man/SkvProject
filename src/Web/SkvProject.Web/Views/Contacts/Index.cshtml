@@ -1,6 +1,10 @@
 ﻿@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 @model SkvProject.Web.ViewModels.Contacts.ContactFormViewModel
 
+@{
+    this.ViewData["Title"] = "Contact Us";
+}
+
 <link href="~/css/contact.css" rel="stylesheet">
 <div class="container d-flex justify-content-center">
     <div class="row my-2 mx-2">
@@ -19,7 +23,7 @@
 
                 <div class="form-group pl-1">
                     <label asp-for="Email"></label>
-                    <input asp-for="Email" class="form-control" value="@this.User.Identity.Name" />
+                    <input asp-for="Email" class="form-control"/>
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
 

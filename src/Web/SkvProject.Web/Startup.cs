@@ -76,8 +76,6 @@
             services.AddTransient<IUsersService, UsersService>();
             services.AddTransient<IVotesService, VotesService>();
             services.AddTransient<IFavoriteService, FavoriteService>();
-
-            // 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
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
