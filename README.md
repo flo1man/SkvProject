@@ -7,8 +7,9 @@
 * [AutoMapper](https://github.com/AutoMapper/AutoMapper)
 * [Bootstrap](https://github.com/twbs/bootstrap)
 * [Font Awesome](https://fontawesome.com/)
-* TinyMCE
-* HTMLSanitizer
+* [TinyMCE](https://www.tiny.cloud/)
+* [HTMLSanitizer](https://github.com/mganss/HtmlSanitizer)
+* [SendGrid](https://sendgrid.com/)
 <br/><br/>
 
 ## 📝 Project Overview
