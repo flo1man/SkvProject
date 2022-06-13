@@ -10,6 +10,7 @@
     using Microsoft.EntityFrameworkCore;
     using SkvProject.Data.Common.Models;
     using SkvProject.Data.Models;
+    using SkvProject.Data.Models.Article;
     using SkvProject.Data.Models.Forum;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
@@ -24,6 +25,7 @@
         {
         }
 
+        // Forum
         public DbSet<Post> Posts { get; set; }
 
         public DbSet<PostCategory> PostCategories { get; set; }
@@ -33,6 +35,11 @@
         public DbSet<FavoritePost> FavoritePosts { get; set; }
 
         public DbSet<Vote> Votes { get; set; }
+
+        // Article
+        public DbSet<News> News { get; set; }
+
+        public DbSet<Source> Sources { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 

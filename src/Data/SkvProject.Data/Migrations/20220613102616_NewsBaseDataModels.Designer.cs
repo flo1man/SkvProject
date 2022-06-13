@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkvProject.Data;
 
@@ -11,9 +12,10 @@ using SkvProject.Data;
 namespace SkvProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220613102616_NewsBaseDataModels")]
+    partial class NewsBaseDataModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -246,89 +248,6 @@ namespace SkvProject.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-                });
-
-            modelBuilder.Entity("SkvProject.Data.Models.Article.News", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("OriginalUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("SourceId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.HasIndex("SourceId");
-
-                    b.ToTable("News");
-                });
-
-            modelBuilder.Entity("SkvProject.Data.Models.Article.Source", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DefaultImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Url")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.ToTable("Sources");
                 });
 
             modelBuilder.Entity("SkvProject.Data.Models.Forum.Comment", b =>
@@ -566,15 +485,6 @@ namespace SkvProject.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SkvProject.Data.Models.Article.News", b =>
-                {
-                    b.HasOne("SkvProject.Data.Models.Article.Source", "Source")
-                        .WithMany("News")
-                        .HasForeignKey("SourceId");
-
-                    b.Navigation("Source");
-                });
-
             modelBuilder.Entity("SkvProject.Data.Models.Forum.Comment", b =>
                 {
                     b.HasOne("SkvProject.Data.Models.ApplicationUser", "Author")
@@ -664,11 +574,6 @@ namespace SkvProject.Data.Migrations
                     b.Navigation("Roles");
 
                     b.Navigation("Votes");
-                });
-
-            modelBuilder.Entity("SkvProject.Data.Models.Article.Source", b =>
-                {
-                    b.Navigation("News");
                 });
 
             modelBuilder.Entity("SkvProject.Data.Models.Forum.Post", b =>
