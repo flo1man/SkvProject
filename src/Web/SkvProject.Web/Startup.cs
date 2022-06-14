@@ -18,6 +18,7 @@
     using SkvProject.Data.Seeding;
     using SkvProject.Services;
     using SkvProject.Services.Data.Forum;
+    using SkvProject.Services.Data.Articles;
     using SkvProject.Services.Mapping;
     using SkvProject.Services.Messaging;
     using SkvProject.Web.ViewModels;
@@ -76,6 +77,8 @@
             services.AddTransient<IUsersService, UsersService>();
             services.AddTransient<IVotesService, VotesService>();
             services.AddTransient<IFavoriteService, FavoriteService>();
+            services.AddTransient<ISourceService, SourceService>();
+            services.AddTransient<INewsService, NewsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
