@@ -1,0 +1,41 @@
+﻿@using SkvProject.Web.ViewModels.Articles
+@model NewsListViewModel
+
+@{
+    this.ViewData["Title"] = "News";
+}
+
+    @foreach (var news in Model.News)
+   {
+       <article class="g-mb-20 clearfix">
+        <div class="g-pos-rel px-2">
+            <h3 class="h5">
+                <a class="u-link-v5 g-color-black g-color-primary--hover" href="@news.ImageUrl">
+                    @if (!string.IsNullOrWhiteSpace(news.SourceName))
+                    {
+                        <span title="@news.SourceName">@news.SourceName:</span>
+                    }
+                    @news.ShortContent
+                </a>
+            </h3>
+            <div class="media">
+                <a class="d-flex mr-2">
+                    <img class="rounded g-width-100 g-height-60" src="@news.ImageUrl" alt="@news.SourceName" title="@news.Title" />
+                </a>
+                <p class="g-color-gray-dark-v4 text-justify mb-2">
+                </p>
+            </div>
+            <ul class="d-flex justify-content-start align-items-end list-inline g-color-gray-dark-v5 g-font-size-13 g-mb-10">
+                <li class="list-inline-item">
+                    <span class="g-font-size-13">
+                        <a href="@news.OriginalUrl" target="_blank">@news.SourceName</a>
+                    </span>
+                </li>
+                <li class="list-inline-item ml-auto">
+                    <span class="g-color-gray-dark-v5">@news.PostedOn.ToShortDateString()</span>
+                </li>
+            </ul>
+        </div>
+    </article>
+   }
+<partial name="_NewsPagingPartial" model="@Model" />
