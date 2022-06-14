@@ -1,5 +1,7 @@
 ﻿namespace SkvProject.Data.Models.Article
 {
+    using System;
+
     using SkvProject.Data.Common.Models;
 
     public class News : BaseDeletableModel<int>
@@ -13,6 +15,8 @@
         public string OriginalUrl { get; set; }
 
         public int? SourceId { get; set; }
+
+        public DateTime PostedOn { get; set; }
 
         public virtual Source Source { get; set; }
     }
