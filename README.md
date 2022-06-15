@@ -7,9 +7,11 @@
 * [AutoMapper](https://github.com/AutoMapper/AutoMapper)
 * [Bootstrap](https://github.com/twbs/bootstrap)
 * [Font Awesome](https://fontawesome.com/)
-* [TinyMCE](https://www.tiny.cloud/)
+* [AngleSharp](https://anglesharp.github.io/)
+* [TinyMCE API](https://www.tiny.cloud/)
 * [HTMLSanitizer](https://github.com/mganss/HtmlSanitizer)
-* [SendGrid](https://sendgrid.com/)
+* [SendGrid API](https://sendgrid.com/)
+* [reCAPTCHA v3](https://developers.google.com/recaptcha/docs/v3)
 <br/><br/>
 
 ## 📝 Project Overview
