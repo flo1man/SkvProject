@@ -12,7 +12,7 @@
 
     internal class RolesSeeder : ISeeder
     {
-        private const string AdminUsername = "admin@admin.com";
+        private const string AdminUsername = "admin";
 
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
