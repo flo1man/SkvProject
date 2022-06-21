@@ -19,11 +19,10 @@
             var roleManager = serviceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
 
             await SeedRoleAsync(roleManager, AdministratorRoleName);
+            var admin = dbContext.Users.FirstOrDefault(x => x.UserName == AdminUsername);
 
-            if (!dbContext.UserRoles.Any())
+            if (admin != null && !dbContext.UserRoles.Any())
             {
-                var admin = dbContext.Users.FirstOrDefault(x => x.UserName == AdminUsername);
-
                 admin.Roles.Add(new IdentityUserRole<string>()
                 {
                     UserId = admin.Id,
