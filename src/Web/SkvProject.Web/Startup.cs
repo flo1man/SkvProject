@@ -126,6 +126,10 @@
                             "f/{category:minlength(3)}/{pageNumber?}",
                             new { Controller = "Forum", Action = "ByName" });
                         endpoints.MapControllerRoute(
+                            "news",
+                            "News/{id:int:min(1)}",
+                            new { controller = "News", action = "ById", });
+                        endpoints.MapControllerRoute(
                             "areaRoute",
                             "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapControllerRoute(

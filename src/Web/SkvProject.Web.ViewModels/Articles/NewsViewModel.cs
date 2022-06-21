@@ -4,6 +4,8 @@
     using System.Net;
     using System.Text.RegularExpressions;
 
+    using AngleSharp;
+    using AngleSharp.Html.Parser;
     using Ganss.XSS;
     using SkvProject.Common;
     using SkvProject.Data.Models.Article;
@@ -19,8 +21,26 @@
 
         public string ShortContent => this.GetShortContent(235);
 
-        public string SanitizedContent =>
-            new HtmlSanitizer().Sanitize(this.Content);
+        public string SanitizedContent
+        {
+            get
+            {
+                var htmlSanitizer = new HtmlSanitizer();
+                var html = htmlSanitizer.Sanitize(this.Content);
+
+                var parser = new HtmlParser();
+                var document = parser.ParseDocument(html);
+
+                var images = document.QuerySelectorAll("img");
+
+                foreach (var image in images)
+                {
+                    image.ClassName = " img img-fluid";
+                }
+
+                return document.ToHtml();
+            }
+        }
 
         public string ImageUrl { get; set; }
 
@@ -33,6 +53,8 @@
         public DateTime CreatedOn { get; set; }
 
         public DateTime PostedOn { get; set; }
+
+        public string Url => $"/News/{this.Id}";
 
         public string GetShortContent(int maxLength)
         {

@@ -8,6 +8,12 @@
   <PropertyGroup>
     <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Administration\**" />
+    <EmbeddedResource Remove="Administration\**" />
+    <None Remove="Administration\**" />
+  </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\stylecop.json" />
   </ItemGroup>
@@ -23,10 +29,6 @@
     <ProjectReference Include="..\..\Data\SkvProject.Data.Models\SkvProject.Data.Models.csproj" />
     <ProjectReference Include="..\..\Services\SkvProject.Services.Mapping\SkvProject.Services.Mapping.csproj" />
     <ProjectReference Include="..\SkvProject.Web.Infrastructure\SkvProject.Web.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Administration\" />
   </ItemGroup>
 
 </Project>

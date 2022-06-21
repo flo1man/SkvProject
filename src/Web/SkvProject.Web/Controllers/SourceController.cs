@@ -7,7 +7,7 @@
     using SkvProject.Common;
     using SkvProject.Services.Data.Articles;
 
-    [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+    //[Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class SourceController : BaseController
     {
         private readonly ISourceService sourceService;
